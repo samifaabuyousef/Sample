@@ -9,4 +9,4 @@ Sample modules
 * The lazyloaded modules includes 2 modules first is the Auth module,
 * second is the camps module which includes campaigns module.
 * Inside the campaign module, the main operations are for crud using angular materials and reusable components.
-* The module uses a generic crud service imported from the core module and customized data source base for  pagination,sorting, and filtering
+* The module uses a generic crud service imported from the core module and customized data source base for  pagination,sorting, and filtering.
