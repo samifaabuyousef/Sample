@@ -1,0 +1,42 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='calendar'"
+>
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+  <!-- <div class="ngx-timepicker-field-example">
+    <ngx-timepicker-field [buttonAlign]="'left'" [formControlName]="field.key"></ngx-timepicker-field>
+  </div> -->
+
+
+
+<div class="toggle-example box-class">
+  <input [ngxTimepicker]="toggleTimepicker"
+  [formControlName]="field.key"
+  [value]="form.get(field.key).value"
+  class="input-class time-picker-class"
+  [ngClass]="{'required-field': field.required , 'disabled-field-class': isDisabled}"
+   [disableClick]="false" >
+  <ngx-material-timepicker-toggle 
+  [ngClass]="{ 'disabled-field-class': isDisabled}"
+  [for]="toggleTimepicker" style="position: absolute;"></ngx-material-timepicker-toggle>
+  <ngx-material-timepicker
+  [ngClass]="{ 'disabled-field-class': isDisabled}"
+  #toggleTimepicker></ngx-material-timepicker>
+</div>
+
+
+
+  <!-- <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired "> {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid != undefined">
+    {{field.label}}  {{form.get(field.key).errors.invalid }}
+  </div>
+
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid === undefined">
+    {{field.label}} is not valid
+  </div>
+
+
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div> -->
+</div>

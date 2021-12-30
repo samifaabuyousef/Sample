@@ -1,0 +1,216 @@
+@import "mixins";
+@import "variables";
+.hcp-icon {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  &:after {
+    content: '';
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, - 50%);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--small:before {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--large:before,
+  &--large:after {
+    width: rem(40px);
+    height: rem(40px);
+  }
+
+  &--eye:before,
+  &--eye-purple {
+    background-image: url('/assets/images/icons/hcp-violet-eye-icon.svg');
+    background-size: contain;
+  }
+  &--green-eye:before,
+  &--eye-icon {
+    background-image: url('/assets/images/icons/prescribe-green-eye.svg');
+    background-size: contain;
+  }
+  &--close:before {
+    background-image: url('/assets/images/icons/hcp-close-icon.svg');
+  }
+  &--close-violet:before {
+    background-image: url('/assets/images/icons/hcp-violet-close-icon.svg');
+  }
+  &--dropdown:before,
+  &--dropdown-opened:before {
+    background-image: url('/assets/images/icons/hcp-green-dropdown.svg');
+  }
+  &--dropdown-opened:before {
+    transform: rotate(180deg);
+  }
+  &--equalizer-opened {
+    width: rem(40px);
+    height: rem(40px);
+    background-image: url('/assets/images/icons/hcp-equalizer-icon_default.svg');
+  }
+  &--equalizer {
+    width: rem(40px);
+    height: rem(40px);
+    background-image: url('/assets/images/icons/hcp-equalizer-icon.svg');
+  }
+  &--ellipse:before {
+    width: rem(10px);
+    height: rem(10px);
+    background-image: url('/assets/images/icons/ellipse-icon.svg');
+  }
+  &--flag-usa:before,
+  &--flag-sa:before {
+    width: rem(30px);
+    height: rem(20px)
+  }
+  &--flag-usa:before {
+    background-image: url('/assets/images/icons/hcp-flag-usa.svg');
+  }
+  &--flag-sa:before {
+    background-image: url('/assets/images/icons/hcp-flag-sa.svg');
+  }
+  &--user:before {
+    height: rem(16px);
+    width: rem(16px);
+    background-image: url('/assets/images/icons/hcp-user-icon.svg');
+  }
+  &--logout:before {
+    width: rem(20px);
+    height: rem(20px);
+    background-image: url('/assets/images/icons/hcp-logout-icon.svg');
+ //   background-color: #352c7c;
+
+  }
+  &--password:before {
+    width: rem(20px);
+    height: rem(20px);
+    background-image: url('/assets/images/icons/hcp-password-icon.svg');
+}
+  &--edit {
+    width: rem(36px);
+    height: rem(36px);
+    background-image: url('/assets/images/icons/hcp-edit-icon.svg');
+  }
+  &--delete {
+    width: rem(36px);
+    height: rem(36px);
+    background-image: url('/assets/images/icons/hcp-delete-icon.svg');
+  }
+  &--send:after {
+    margin: 0 rem(8px);
+    background-image: url('/assets/images/icons/hcp-send-icon.svg');
+  }
+  &--info:after {
+    width: rem(14px);
+    height: rem(14px);
+    margin: 0 rem(3px);
+    background-image: url('/assets/images/icons/hcp-info-icon.svg');
+  }
+
+  &--prescription {
+    width: rem(36px);
+    height: rem(36px);
+    display: inline-block;
+    background-image: url('/assets/images/icons/prescription-icon.svg');
+  }
+
+  &--switch{
+    width: rem(36px);
+    height: rem(36px);
+    display: inline-block;
+    background-image: url('/assets/images/icons/prescription-icon.svg');
+
+  }
+  &--down:after {
+    width: rem(14px);
+    height: rem(8px);
+    margin: 0 rem(3px);
+    background-image: url('/assets/images/icons/hcp-dark-arrow-down.svg');
+  }
+  &--arrow-up:after {
+    width: rem(8px);
+    height: rem(12px);
+    margin: 0 rem(6px);
+    background-image: url('/assets/images/icons/arrow-up.svg');
+  }
+  &--arrow-down:after {
+    width: rem(8px);
+    height: rem(12px);
+    margin: 0 rem(6px);
+    background-image: url('/assets/images/icons/arrow-down.svg');
+  }
+  &--star {
+    display: inline-block;
+    width: rem(10px);
+    height: rem(10px);
+    @include rtl(margin-right, 3px, 0);
+    @include rtl(margin-left, 0, 3px);
+    background-image: url('/assets/images/icons/hcp-star-icon.svg');
+  }
+  &--writing:before {
+    @include rtl(margin-right, 5px, 0);
+    @include rtl(margin-left, 0, 5px);
+    background-image: url('/assets/images/icons/hcp-writing-icon.svg');
+  }
+  &--next {
+    background: url('/assets/images/icons/hcp-next-icon.svg') no-repeat center center;
+    background-size: contain;
+  }
+  &--multiple-users:before {
+    width: rem(13px);
+    height: rem(13px);
+    @include rtl(margin-right, 5px, 0);
+    @include rtl(margin-left, 0, 5px);
+    background-image: url('/assets/images/icons/hcp-multiple-users-silhouette.svg');
+  }
+  &--xl {
+    width: rem(60px);
+    height: rem(60px);
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+  }
+  &--check {
+    width: rem(20px);
+    height: rem(20px);
+    display: inline-block;
+    background: url('/assets/images/icons/hcp-checkbox-icon.svg');
+    @include rtl(margin-left, 5px, 0);
+    @include rtl(margin-right, 0, 5px);
+  }
+  &--list {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background: url('/assets/images/icons/hcp-list-icon.svg');
+    @include rtl(margin-left, 6px, 0);
+    @include rtl(margin-right, 0, 6px);
+  }
+  &--blind {
+    width: 36px;
+    height: 36px;
+    background-image: url('/assets/images/icons/hcp-blind.svg');
+    background-size: contain;
+  }
+
+
+
+
+
+}

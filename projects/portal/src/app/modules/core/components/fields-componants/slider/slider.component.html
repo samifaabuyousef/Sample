@@ -1,0 +1,22 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+  <div [ngStyle]="{'width': field.width}" class="slide-field-input">
+
+    <mat-slider
+      class="example-margin"
+      [ngStyle]="{'width': field.width}"
+      [invert]="field.sliderConfilg.invert"
+      [max]="field.sliderConfilg.max"
+      [min]="field.sliderConfilg.min"
+      [step]="field.sliderConfilg.step"
+      [thumbLabel]="field.sliderConfilg.thumbLabel"
+      [tickInterval]="field.sliderConfilg.tickInterval"
+      [formControlName]="field.key"
+      [value]="form.get(field.key).value"
+      (change)="sliderValueChange()"
+      [vertical]="field.sliderConfilg.vertical">
+    </mat-slider>
+
+  </div>
+
+</div>

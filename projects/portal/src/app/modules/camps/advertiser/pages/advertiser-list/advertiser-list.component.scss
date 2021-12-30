@@ -1,0 +1,23 @@
+.hcp-table-block {
+  //padding: 1rem 1.125rem 0 1.5rem;
+}
+
+.hcp-table-container {
+  //  width: rem(1110px);
+  padding-bottom: rem(10px);
+}
+mat-cell.hcp-actions-col {
+  overflow: visible;
+}
+
+.hcp-tooltip .hcp-tooltip__top {
+  top: -30px;
+  left: 50%;
+  transform: translateX(calc(-50% - 7px));
+}
+
+.mat-cell > div.with-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}

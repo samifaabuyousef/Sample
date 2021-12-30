@@ -1,0 +1,37 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='calendar'"
+     [ngClass]="field.fieldContainerClass">
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+
+  <input #aocDatePickerControl
+
+         matInput
+         [min]="getMinValue()"
+         [formControlName]="field.key"
+         [matDatepicker]="picker"
+         [required]="field.required"
+         [placeholder]="'dd/mm/yyyyy'"
+         [value]="form.get(field.key).value"
+         [ngClass]="field.insideFieldClass"
+         (change)="sliderValueChange()"
+         (blur)="onBlur($event)"
+         (dateChange)="sliderValueChange()">
+
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired "> {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid != undefined">
+    {{field.label}}  {{form.get(field.key).errors.invalid }}
+  </div>
+
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid === undefined">
+    {{field.label}} is not valid
+  </div>
+
+
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>

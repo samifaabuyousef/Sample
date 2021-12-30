@@ -1,0 +1,115 @@
+.hcp-chart-arc {
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+    &--large {
+      width: rem(150px);
+      height: rem(75px);
+    }
+    &--small {
+      width: rem(57px);
+      height: rem(28px);
+    }
+    overflow: hidden;
+    &__container {
+      width: 100%;
+      &--small {
+        max-width: rem(55px);
+      }
+      &:not(:first-child) {
+        @include rtl(margin-left, 18px, 0);
+        @include rtl(margin-right, 0, 18px);
+      }
+      span {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      span.hcp-body-text-highlight {
+        bottom: 5px;
+      }
+      span.hcp-tips {
+        bottom: -3px;
+        color: $hcp-text-color;
+      }
+    }
+    &__item {
+      position: relative;
+    }
+    &--large  li {
+      border-width: rem(25px);
+      border-bottom-left-radius: rem(175px);
+      border-bottom-right-radius: rem(175px);
+      &:nth-child(1) {
+        border-color: #fff;
+      }
+      &:nth-child(2) {
+        border-color: rgba(255, 255, 255, .2);
+      }
+    }
+    &--small  li {
+      border-width: rem(5px);
+      border-bottom-left-radius: rem(55px);
+      border-bottom-right-radius: rem(55px);
+      &:nth-child(1) {
+        border-color: $hcp-clickable-text-color;
+      }
+      &:nth-child(2) {
+        border-color: rgba(152, 142, 222, .15);
+      }
+    }
+    li {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: inherit;
+      height: inherit;
+      border-style: solid;
+      border-top: none;
+      transform-origin: 50% 0;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      animation-fill-mode: forwards;
+      animation-duration: .4s;
+      animation-timing-function: linear;
+      &:nth-child(1) {
+        z-index: 4;
+        // border-color: #fff;
+        animation-name: rotate-one;
+      }
+      &:nth-child(2) {
+        z-index: 3;
+        // border-color: rgba(255, 255, 255, .2);
+        animation-name: rotate-two;
+        animation-delay: .4s;
+      }
+    }
+  }
+  
+  
+@keyframes rotate-one {
+    0% {
+      transform: rotate(0deg);
+    }
+}
+  
+@keyframes rotate-two {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(180deg);
+    }
+}
+  
+  
+@keyframes fade-in {
+    0%,
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}

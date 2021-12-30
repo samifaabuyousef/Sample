@@ -1,0 +1,14 @@
+<div [formGroup]="form" class="form-group"
+     [class.center-elements]="field.controlType=='calendar'"
+     [ngClass]="field.insideFieldClass"
+
+>
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+
+
+  <app-dynamic-form-content class="form-content-class"
+                            [fieldsContainersContent]="field.fieldGroup"
+                            [form]="form"></app-dynamic-form-content>
+
+
+</div>

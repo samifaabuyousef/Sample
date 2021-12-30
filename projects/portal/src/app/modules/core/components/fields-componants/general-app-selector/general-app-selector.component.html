@@ -1,0 +1,27 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+
+  <div>
+
+
+    <app-general-selector
+      [config]="field.generalConfig"
+      [sortable]="field.sortable"
+      [ngClass]="field.generalSelectorClass"
+      [selectTitle]="field.selectTitle"
+      (onContainChanged)="changeSelect( field.key,$event)"
+    ></app-general-selector>
+
+
+  </div>
+
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired">This {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="isMaxLength && isRequired && !isValid">
+    This {{field.label}} is not valid, Please choose a color from the color picker
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>
+
+

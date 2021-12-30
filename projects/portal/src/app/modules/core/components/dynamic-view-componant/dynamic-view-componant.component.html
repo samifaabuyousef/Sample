@@ -1,0 +1,22 @@
+<div class="hcp-popup hcp-popup--large hcp-popup--dark">
+  <div class="hcp-popup__row hcp-row">
+    <h2 class="hcp-title-h2">Procedure details</h2>
+  </div>
+  <div class="hcp-popup__block" *ngIf="data.data">
+    <div class="hcp-popup__block-row hcp-row">
+      <span class="hcp-body-text-highlight" *ngFor="let field of data.data">{{field.attribue}}</span>
+
+    </div>
+    <div class="hcp-popup__block-row hcp-row">
+      <span *ngFor="let field of data.data" class="hcp-body-text hcp-popup__block-text"> {{ field.value }}</span>
+
+    </div>
+
+
+    <div class="hcp-popup__row hcp-popup__row--end hcp-row">
+      <button class="hcp-button hcp-button--contained hcp-button-subtitle hcp-button--close"
+              [routerLink]="[RouterLinkOnCancel]">Close
+      </button>
+    </div>
+  </div>
+

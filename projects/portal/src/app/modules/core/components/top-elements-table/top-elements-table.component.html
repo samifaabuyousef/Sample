@@ -1,0 +1,90 @@
+<!-- <div class="top-table-container">
+  <div class="statistics-container">
+    <div class="writing-color">
+      <h5>Most Viewed Copmaigns</h5>
+      <div class="views-container">
+        <p class="views-number-size">5555.5 </p>
+        <p class="view-phrase">Views <span class="material-icons">
+
+            keyboard_arrow_up
+            </span></p>
+      </div>
+      <div class="top-views-phrase">Top 5 Viedeos</div>
+    </div>
+    <div class="last-element">
+      <button (click)="openModal()">Show All</button>
+    </div>
+  </div>
+  <table class="table-container">
+    <tr class="header-cell">
+      <th *ngFor="let header of headers">{{header}}</th>
+
+
+    </tr>
+    <tr class="row-cell" *ngFor="let row of rows.slice(0, 5) ; let j = index">
+      <td *ngFor="let header of headers ;  let i = index">
+        <div >{{row[i]}}</div>
+      </td>
+
+
+    </tr>
+
+
+  </table>
+</div> -->
+<!-- <tr class="row-cell" *ngFor="let row of rows ; let j = index">
+  <div *ngIf="j <= 5">
+    <td *ngFor="let header of headers ;  let i = index" class="data-cell">
+      <div>{{row[i]}}</div>
+    </td>
+  </div>
+  
+
+
+</tr> -->
+<nbd-common-top-items-table style="height: 100%; display: block;"
+(showEvent) ="openModal()"
+[removeFilter] ="removeFilter"
+[tableTitle]="tableTitle"
+(filterEvent)= "changingData($event)"
+[data]="topPrescribedAlbumsData"></nbd-common-top-items-table>
+   
+<ngx-smart-modal #modal
+                 (onClose)="closeModal()"
+                 (onCloseFinished)="modalKey = undefined"
+                 [dismissable]="false"
+                 identifier="conditionModal"
+                 customClass="nsm-dialog-animation-ttb nsm-centered">
+  <ng-container *ngIf="openModel">
+    <h5 class="header-width">get all elements</h5>
+    <div class="hcp-form__search">
+      <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)">
+        <input
+          #searchInput
+          formControlName="searchText"
+          placeholder="Search"
+        >
+        <button type="submit"></button>
+      </form>
+    </div>
+
+    <table class="table-container">
+      <tr class="header-cell">
+        <th *ngFor="let header of headers">{{header}}</th>
+
+
+      </tr>
+      <tr class="row-cell" *ngFor="let row of rows">
+        <td *ngFor="let header of headers ;  let i = index">
+          <div>{{row[i]}}</div>
+        </td>
+
+
+      </tr>
+
+
+    </table>
+  </ng-container>
+
+
+</ngx-smart-modal>

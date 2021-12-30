@@ -1,0 +1,35 @@
+<div [formGroup]="form" class="form-group " [class.center-elements]="field.controlType=='checkbox'">
+  
+    <label style="height: 41px;" 
+    [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+    <div class="hcp-form__search"
+    [ngStyle]="{'width': field.width}" [ngClass]="{'flag-container-class':field.flag != ''}">
+      
+      <input [formControlName]="field.key"
+             [value]="form.get(field.key).value"
+             [ngClass]="field.insideFieldClass"
+             (change)="sliderValueChange()"
+             placeholder="Search"
+             [id]="field.key" [type]="field.type" class="form-control">
+             <button type="submit" ></button>
+    </div>
+    <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired ">This {{field.label}} is required</div>
+    <div class="hcp-body-text hcp-error-field" 
+    *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid != undefined">
+      This {{field.label}}  {{form.get(field.key).errors.invalid }}
+    </div>
+  
+    <div class="hcp-body-text hcp-error-field" 
+    *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid === undefined">
+      This {{field.label}} is not valid
+    </div>
+    
+    <!-- <div class="hcp-body-text hcp-error-field"
+     *ngIf="form.get({{field.key}}).errors.equal &&t form.controls[{{field.key}}].touched">
+      This {{field.label}} is not equal
+    </div> -->
+    <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+      the max title length is {{field.maxLength}} character
+    </div>
+  </div>
+  

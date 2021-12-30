@@ -1,0 +1,53 @@
+<!--<div id="video_player"></div>-->
+<ng-container *ngIf="videoStyle === 1">
+  <div
+    class="plyr-video"
+    plyr
+    style="width: 640px;"
+    [plyrPlaysInline]="true"
+    [plyrSources]="vimeoSources"
+    [plyrOptions]="options"
+    (plyrInit)="player = $event"
+    (plyrPlay)="played($event)"
+    (plyrReady)="ready($event)"
+    (plyrTimeUpdate)="progress($event)"
+    (plyrPause)="onPause($event)"
+    (plyrPlay)="onPlay($event)"
+  ></div>
+</ng-container>
+
+<!-- Style 2-->
+<ng-container *ngIf="videoStyle === 2">
+    <div
+      class="doctor-video-info video-style-two">
+      <div class="session-info-wrapper">
+        <a>
+          <div class="left-side-section">
+            <div
+              class="plyr-video"
+              plyr
+              style="width: 640px;"
+              [plyrPlaysInline]="true"
+              [plyrOptions]="options"
+              [plyrSources]="vimeoSources"
+              (plyrInit)="initPlayer($event)"
+              (plyrPlay)="played($event)"
+              (plyrReady)="ready($event)"
+              (plyrTimeUpdate)="progress($event)"
+              (plyrPause)="onPause($event)"
+              (plyrPlay)="onPlay($event)"
+            ></div>
+          </div>
+          <div class="right-side-section">
+            <h3 *ngIf="videoTitle && videoTitle !== ''">{{videoTitle}}</h3>
+            <p *ngIf="videoDescription && videoDescription !== ''">{{videoDescription}}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+</ng-container>
+
+<div class="player" data-plyr-provider="vimeo" data-plyr-embed-id="76979871"></div>
+
+<div class="player" data-plyr-provider="vimeo" data-plyr-embed-id="76979871"></div>
+

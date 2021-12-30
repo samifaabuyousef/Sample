@@ -1,0 +1,574 @@
+@import "../../../assets/styles/general-components/variables";
+@import "../../../assets/styles/general-components/mixins";
+@import "../../../assets/styles/general-components/main";
+@import "../../../assets/styles/general-components/breadcrumbs";
+
+.mat-drawer-inner-container {
+  width: 100%;
+  max-width: rem(220px);
+  box-shadow: 0px rem(2px) rem(8px) rgba(152, 142, 222, 0.08);
+}
+
+.hcp-row {
+  display: flex;
+}
+
+.mat-drawer-content {
+  display: unset;
+
+  ::ng-deep .mat-drawer-content {
+    width: calc(100% - 220px);
+    background: #F5F5FA;
+    @include rtl(margin-left, 220px, 0);
+    @include rtl(margin-right, 0, 220px);
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+}
+
+.mat-drawer-inner-container {
+  &::ng-deep .mat-drawer-inner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+}
+
+.hcp-scrolled {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: rem(8px);
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $hcp-scrollbar-track-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $hcp-scrollbar-thumb-color;
+    border-radius: $border-radius;
+  }
+
+  &::-webkit-scrollbar-button:single-button {
+    width: rem(6px);
+    height: rem(14px);
+    border: none;
+  }
+
+  &::-webkit-scrollbar-button:single-button:vertical:decrement {
+    // background: $hcp-scrollbar-track-color url(assets/images/icons/hcp-scrollbar-arrow-up.svg) no-repeat center 5px;
+    border-radius: $border-radius $border-radius 0 0;
+  }
+
+  &::-webkit-scrollbar-button:single-button:vertical:increment {
+    background: $hcp-scrollbar-track-color url("/assets/images/icons/hcp-scrollbar-arrow-down.svg") no-repeat center;
+    border-radius: 0 0 $border-radius $border-radius;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+}
+
+::ng-deep {
+  button.menu-icon {
+    display: none;
+  }
+}
+
+// responsive
+@media (max-width: 992px) {
+  ::ng-deep {
+    button.menu-icon {
+      display: inline-block;
+      border: transparent;
+      background: transparent;
+      color: #fff;
+      position: absolute;
+      z-index: 99999;
+      top: 50%;
+      left: 5px;
+      font-size: 20px;
+      /* bottom: 50%; */
+      transform: translateY(-50%);
+    }
+
+    .hcp-topbar__logo-box {
+      width: 1rem !important;
+
+      img.hcp-aside__logo {
+        width: 25px;
+      }
+    }
+
+    .hcp-topbar .hcp-tab {
+      margin-left: 3.175rem !important;
+    }
+
+    .hcp-topbar__dropdown-bar .user-avatar {
+      margin: 0 5px !important;
+    }
+
+    .nav-top-bar-nabed {
+      position: relative;
+    }
+
+    .hcp-topbar {
+      padding-left: 50px !important;
+    }
+
+    .hcp-topbar .hcp-tab a {
+      font-size: 1rem !important;
+    }
+
+    .hcp-topbar .hcp-tab li {
+      margin-right: 2rem !important;
+    }
+
+    .hcp-topbar .hcp-tab {
+      margin-right: 0 !important;
+    }
+
+    mat-drawer.side-bar-mobile {
+      height: 100%; /* 100% Full-height */
+      width: 0 !important; /* 0 width - change this with JavaScript */
+      position: fixed; /* Stay in place */
+      z-index: 99 !important; /* Stay on top */
+      top: 0; /* Stay at the top */
+      left: 0;
+      overflow: hidden !important; /* Disable horizontal scroll */
+      padding-top: 60px; /* Place content 60px from the top */
+      transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    }
+
+    .mat-drawer-inner-container {
+      overflow: hidden !important;
+    }
+
+    mat-drawer-content.mat-drawer-content.mat-drawer-content {
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+
+    .menu-opened mat-drawer.side-bar-mobile {
+      width: 220px !important;
+    }
+
+    .mat-drawer-content.menu-opened mat-drawer-container.hcp-row.mat-drawer-container:after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      background-color: #00000050;
+      position: absolute;
+      z-index: 9;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
+    app-search {
+      .hcp-form__search {
+        width: 100% !important;
+      }
+
+      label {
+        height: auto !important;
+        margin-right: 0 !important;
+      }
+
+      .form-group.ng-untouched.ng-pristine.ng-valid {
+        height: auto;
+      }
+    }
+
+    .button-class {
+      flex-direction: column;
+      right: 0 !important;
+      width: 100% !important;
+      padding: 0 20px;
+
+      .button-filter {
+        width: 100%;
+      }
+
+      span {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 0 !important;
+        margin-bottom: 10px !important;
+      }
+    }
+
+    // table paginator
+    .mat-paginator-range-label {
+      margin: 0 15px 0 15px !important;
+    }
+
+    // Header
+    .hcp-main__header {
+      align-items: center;
+    }
+
+    .iti.iti--allow-dropdown {
+      width: 100%;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 25px;
+
+      .hcp-body-text.hcp-error-field.ng-star-inserted {
+        position: absolute;
+        bottom: -20px;
+      }
+    }
+
+    // ad details
+    #adDetails .flex-box-first-container {
+      .flex-box-title {
+        flex-direction: column;
+        margin-top: 10px;
+      }
+
+      .flex-box-title span.brand-details-title {
+        margin-bottom: 10px;
+      }
+
+      .filter-container {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    //  chart
+    nbd-common-items-chart-by-date.chart.ng-star-inserted {
+      .m-btn--icon.m-btn--icon-only {
+        width: 50px !important;
+        height: 28px !important;
+      }
+
+      .range-label {
+        font-size: 16px !important;
+      }
+    }
+
+    //  hcp top bar
+    .hcp-topbar__right-row {
+      justify-content: flex-end !important;
+    }
+
+    .hcp-topbar__logo-box {
+      width: auto !important;
+    }
+
+    //
+    span.ads-icon {
+      margin-right: 10px;
+    }
+
+    // popup
+    .nsm-content {
+      width: 90% !important;
+      margin: auto !important;
+      margin-top: 4.75rem !important;
+      z-index: 99999999999;
+      margin-bottom: 1.75rem !important;
+      min-width: 90vw;
+    }
+
+    .pdf-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .modal-title {
+        min-width: 100% !important;
+      }
+
+      a.pdf-download {
+        margin-top: 10px;
+      }
+    }
+
+    .hcp-breadcrumb-box {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) and (min-width: 600px) {
+  ::ng-deep {
+    .form-group {
+      display: flex;
+      align-items: center;
+      align-content: center;
+
+      label {
+        margin: 0;
+        margin-right: 15px;
+        min-width: fit-content;
+      }
+
+      & > div {
+        width: 100% !important;
+      }
+    }
+
+    // ad details
+    #adDetails .flex-box-first-container {
+      .flex-box-title {
+        flex-direction: row;
+      }
+    }
+
+    // popup
+    .nsm-content {
+      width: 100% !important;
+      margin: auto !important;
+      margin-top: 4.75rem !important;
+      z-index: 99999999999;
+      margin-bottom: 1.75rem !important;
+      min-width: 80vw
+    }
+
+    .card-container-light .card-title {
+      font-size: 14px !important;
+    }
+
+    .card-margin-first-two .card-container-light .first-image {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 993px) {
+  ::ng-deep {
+    nbd-common-items-chart-by-date.chart.ng-star-inserted {
+      .m-btn--icon.m-btn--icon-only {
+        width: 50px !important;
+        height: 28px !important;
+      }
+
+      .range-label {
+        font-size: 16px !important;
+      }
+    }
+
+    .card-container-light .card-title {
+      font-size: 14px !important;
+    }
+
+    .card-margin-first-two .card-container-light .first-image {
+      width: 48px;
+      height: 48px;
+    }
+
+    // popup
+    .overlay.nsm-overlay-open {
+      .pdf-wrap .modal-title {
+        min-width: 375px;
+      }
+
+      .nsm-dialog-animation-ttb.nsm-dialog-open {
+        max-width: 600px !important;
+      }
+
+      .nsm-content {
+        max-width: 600px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  ::ng-deep {
+    .container-export-btn button.button-filter.ng-star-inserted {
+      display: none !important;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  ::ng-deep {
+    .hcp-topbar.hcp-row {
+      position: relative;
+      height: 85px;
+    }
+
+    ul.hcp-tab.hcp-row.list {
+      position: absolute;
+      bottom: 9px;
+      left: 10px;
+      margin: 0 !important;
+      font-size: 0.6rem;
+    }
+
+    .hcp-topbar.hcp-row {
+      align-items: start !important;
+    }
+
+    button.menu-icon {
+      top: 25%;
+    }
+
+    .hcp-topbar .hcp-tab li {
+      font-size: 0.7rem;
+      margin-right: 1.5rem !important;
+    }
+
+    .hcp-topbar .hcp-tab a {
+      font-size: 0.9rem !important;
+    }
+
+    .hcp-topbar__right-row {
+      margin-top: -2px;
+    }
+
+    ///////////
+    .hcp-breadcrumb-box .hcp-breadcrumb .hcp-icon:before {
+      margin-right: 0 !important;
+    }
+
+    .hcp-breadcrumb-box .hcp-breadcrumb a {
+      font-size: .775rem !important;
+    }
+
+    .badge-pill {
+      padding-right: 0.5em;
+      padding-left: 0.5em;
+      border-radius: 10rem;
+    }
+
+    app-array-container .position-class {
+      overflow-x: scroll;
+    }
+
+    app-date-check-box {
+      .col-3 {
+        -webkit-box-flex: 0;
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-top: 0px;
+      }
+
+      app-time-picker .form-group, app-checkbox .form-group {
+        position: relative;
+        margin-bottom: 0;
+        height: 40px;
+        display: flex;
+        width: 100%;
+      }
+
+      .time-picker-class {
+        height: 40px !important;
+      }
+
+      .apply-button-style, .apply-button-style:focus, .apply-button-style:active {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+      }
+
+      app-button {
+        width: 100%;
+      }
+
+      app-dropdown .form-group {
+        margin-bottom: 0;
+      }
+
+      app-time-picker > div > div {
+        width: 100% !important;
+      }
+
+      app-button .form-group {
+        margin-bottom: 0;
+      }
+
+      .mat-checkbox {
+        margin-top: 11px;
+      }
+    }
+
+    .hcp-table {
+      min-width: 1000px;
+
+      .hcp-button-edit, .hcp-button-delete {
+        background-size: contain;
+      }
+
+      .hcp-actions-col .hcp-icon {
+        margin-bottom: 10px;
+        margin-right: 5px !important;
+        margin-left: 0;
+      }
+
+      .hcp-actions-col .tree-box {
+        margin-bottom: 10px;
+      }
+
+      .mat-column-actions {
+        flex-wrap: wrap;
+      }
+
+      .hcp-actions-col .hcp-tooltip:last-child .hcp-icon {
+        margin-right: 0;
+      }
+    }
+
+    .hcp-list-wrap .col-6 {
+      width: 100% !important;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+
+    .modal-header {
+      min-width: 100% !important;
+    }
+
+    .col-lg-4.col-md-6.col-sm-12.col-xs-12.card-margin-first-two {
+      margin-bottom: 10px;
+    }
+
+    .hcp-table {
+      min-width: 1000px;
+    }
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  //iPhone X in portrait & landscape
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
+    ::ng-deep {
+      .container-export-btn button.button-filter.ng-star-inserted {
+        display: none !important;
+      }
+    }
+  }
+  // iPad mini in portrait & landscape
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    ::ng-deep {
+      .container-export-btn button.button-filter.ng-star-inserted {
+        display: none !important;
+      }
+    }
+  }
+  // Retina iPad in portrait & landscape
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    ::ng-deep {
+      .container-export-btn button.button-filter.ng-star-inserted {
+        display: none !important;
+      }
+    }
+  }
+}
+
+
+

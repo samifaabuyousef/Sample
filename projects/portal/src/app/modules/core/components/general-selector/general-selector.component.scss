@@ -1,0 +1,51 @@
+.list-select {
+  width: 100%;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container {
+  height: 38px;
+}
+
+::ng-deep .ng-arrow-wrapper {
+  visibility: hidden !important;
+}
+
+::ng-deep .ng-value-container {
+  overflow: visible;
+}
+
+.general-list {
+  .list-group-item.sortable {
+    cursor: grab;
+  }
+
+  .delete {
+    cursor: pointer;
+  }
+}
+
+// ::ng-deep .ngx-select__toggle-buttons {
+  // display: none !important;
+// }
+
+.title-container {
+  display: flex;
+
+  align-items: center;
+
+  width: 79%;
+}
+
+.select-box-hidden {
+  visibility: hidden;
+}
+
+.general-title {
+  overflow: hidden;
+  width: 100%;
+  line-height: 110%;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+}

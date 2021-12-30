@@ -1,0 +1,17 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+
+
+  <textarea type="text" [placeholder]="field.placeholder" #myDiv
+            [formControlName]="field.key" class="form-control"
+            [id]="field.key">
+    </textarea>
+
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired"> {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="isMaxLength && isRequired && !isValid">
+     {{field.label}} is not valid, Please choose a color from the color picker
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>

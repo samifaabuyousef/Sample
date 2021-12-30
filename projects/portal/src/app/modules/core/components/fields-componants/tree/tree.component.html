@@ -1,0 +1,57 @@
+
+
+<div [formGroup]="form" class="form-group position-class "
+     [ngClass]="field.fieldContainerClass"
+     [class.center-elements]="field.controlType=='checkbox'">
+
+  <button
+   class="add-button"
+    (click)="openModal(null,field.key,field)"
+    [ngClass]="{'disabled-button': field.disableState}"
+    [disabled]="field.disableState"
+    >{{field.buttonText}}</button>
+  <label class="no-margin-buttom" [attr.for]="field.key" >{{field.label}}</label>
+
+
+<div class="padding-element"></div>
+</div>
+
+
+<ngx-smart-modal #modal
+                 (onClose)="closeModal()"
+                 (onCloseFinished)="modalKey = undefined"
+                 [dismissable]="false"
+                 identifier="conditionModal"
+                 customClass="nsm-dialog-animation-ttb nsm-centered tree-modal-container">
+  <ng-container *ngIf="openModel">
+    
+    <app-form-container
+    class="full-hight"
+    [cancelRouteLink]="''"
+    [disableSaveText]="false"
+   
+  
+    
+    (onSubmit)="closeModal()"
+    [routingOnCancel]="false"
+    (onCancel)="onCloseEvent($event)"
+
+  >
+
+  <div class="export-loader-btn" *ngIf=" field.treeData.length ===0 || loadingTree">
+    <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <app-general-tree 
+   *ngIf=" field.treeData.length >0 && openModel && !loadingTree"
+  class="tree-block"
+  [treeData]="field.treeData" 
+                    [includeExcludeObject] = "field.includeExcludeObject"
+                    (treeChanged)="fieldChanged(field.key,$event)"
+                    (elementExpanded) = "elementTreeExpanded($event)"
+  ></app-general-tree>
+</app-form-container>
+   
+  </ng-container>
+
+
+</ngx-smart-modal>

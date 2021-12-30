@@ -1,0 +1,29 @@
+.sticky-row-container {
+  padding-bottom: 48px;
+}
+
+.sticky-row {
+  position: fixed;
+  bottom: 0;
+  background-color: #f5f5fa;
+  padding: 10px;
+  padding-right: 17rem;
+  -webkit-box-shadow: inset 0 0 5px 0 rgba(204, 204, 204, 1);
+  -moz-box-shadow: inset 0 0 5px 0 rgba(204, 204, 204, 1);
+  box-shadow: inset 0 0 5px 0 rgba(204, 204, 204, 1);
+  z-index: 11;
+}
+
+.sticky-row-margin {
+  //margin-left: -20px;
+}
+
+.sticky-row.col-sm-12.d-flex.justify-content-end {
+  width: inherit;
+  left: 0;
+  padding-right: 35px;
+}
+
+::ng-deep app-form-container > .row {
+  width:100%
+}

@@ -1,0 +1,36 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+  <div [ngStyle]="{'width': field.width}">
+
+
+    <input type="text" 
+    class="mobile-field-border"
+           [formControlName]="field.key"
+
+           (change)="changeNumber($event)"
+           [ng2TelInputOptions]="{'preferredCountries': ['lb', 'sa','ae','jo']}"
+           ng2TelInput (hasError)="hasError($event)"
+           (ng2TelOutput)="getNumber($event)"
+           (intlTelInputObject)="telInputObject($event)"
+           (countryChange)="onCountryChange($event)"/>
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired "> {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid != undefined">
+       <span *ngIf="field.errorMessage != null">{{form.get(field.key).errors.invalid }}</span>
+       <span *ngIf="!field.errorMessage ">{{field.label}} {{form.get(field.key).errors.invalid }}</span>
+       
+  </div>
+
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid === undefined">
+       <span *ngIf="field.errorMessage != null">{{field.errorMessage}}</span>
+       <span *ngIf="!field.errorMessage">{{field.label}} is not valid</span>
+     
+  </div>
+
+
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>

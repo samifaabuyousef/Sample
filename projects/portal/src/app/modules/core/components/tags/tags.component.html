@@ -1,0 +1,73 @@
+<div id="accordion" [formGroup]="form">
+
+  <div class="card card-distance" *ngFor="let tag of tagsFormArray.controls; let i = index;  ">
+    <div [formGroup]="tag">
+      <div
+        class="card-header card-header-flex"
+        [ngClass]="collapsedOpenItem !='collapse'+i ? 'collapse-closed' : 'collapse-open'"
+        id=" {{tag.value.tag_id}}"
+      >
+          <span class="material-icons" *ngIf="collapsedOpenItem !='collapse'+i">
+            keyboard_arrow_right
+          </span>
+
+          <span class="material-icons" *ngIf="collapsedOpenItem ==='collapse'+i">
+            keyboard_arrow_down
+            </span>
+        <h5 class="mb-0">
+
+
+          <button class="btn btn-link collapsed accordion-btn-customize" data-toggle="collapse"
+                  [attr.data-target]="'#collapse'+i" (click)="toggleCollapse('collapse'+i)"
+                  aria-expanded="false" [attr.aria-controls]="'collapse'+i">
+            {{tag.value.tag_title}}
+          </button>
+        </h5>
+      </div>
+      <div id="collapse{{i}}" class="collapse padding-container " aria-labelledby="tag.value.tag_id"
+           data-parent="#accordion">
+        <div class="collapse-customise-class  row"
+             *ngIf="tag.value.field_type === 'bool' || tag.value.select_type === 'single' ">
+
+          <label class="collapse-customise-class col-3 " *ngFor="let oneValue of tag.value.values"
+          (change)="changeSelected(tag.value.tag_id, oneValue.tagValue,tag.value.field_type,tag.value.select_type)"
+          >
+            <input type="radio" value="{{oneValue.tagValue}}"
+
+                   formControlName="field_value"
+
+            >
+            <span class="padding-choice"> {{oneValue.tagLable}}</span>
+          </label>
+
+        </div>
+        <div *ngIf="tag.value.field_type != 'bool' && tag.value.select_type != 'single' " class="row">
+          <div class="collapse-customise-class col-3"
+               *ngFor="let tagValues of tag.controls.values.controls; let i = index1;  ">
+            <div [formGroup]="tagValues" class="collapse-customise-class"
+             (change)="changeSelected(tag.value.tag_id, tagValues.value.tagValue)">
+
+
+              <input class="distanse-between-checkbox" type="checkbox"
+
+                     [formControl]="tagValues.controls.selected"/>
+
+              <span> {{tagValues.value.tagValue}} </span>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+

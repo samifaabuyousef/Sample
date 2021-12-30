@@ -1,0 +1,99 @@
+<!-- <div [formGroup]="form" class="form-group">
+  <div *ngFor="let oneAccordion of field.accordionConfig; let i = index;">
+    <div id="accordion" *ngIf="!oneAccordion.hiddenAccordion"
+         [ngClass]="oneAccordion.accordionClass">
+      <div class="card">
+        <div class="card-header card-header-flex" id=" {{oneAccordion.title}}">
+
+
+          <h5 class="mb-0">
+            <div class="button-container">
+              <button class="btn btn-link btn-name" data-toggle="collapse"
+                      (click)="toggleCollapse('collapse'+i)"
+                      [attr.data-target]="'#collapse'+i"
+                      data-bs-toggle="collapse"
+                      aria-expanded="false" [attr.aria-controls]="'collapse'+i"
+              >
+                {{oneAccordion.title}}
+              </button>
+              <div class="last-element">
+                <button class="btn btn-link info-button"
+                        *ngIf="oneAccordion.info"
+                        data-toggle="collapse"
+                        (click)="toggleCollapse('collapse'+i)"
+                        [attr.data-target]="'#collapse'+i"
+                        aria-expanded="false" [attr.aria-controls]="'collapse'+i">
+                  {{oneAccordion.info}}%
+                </button>
+                <span class="material-icons" *ngIf="collapsedOpenItem ==='collapse'+i">
+                  keyboard_arrow_right
+                </span>
+
+                <span class="material-icons" *ngIf="collapsedOpenItem !='collapse'+i">
+                  keyboard_arrow_down
+                  </span>
+              </div>
+
+            </div>
+          </h5>
+        </div>
+
+        <div id="collapse{{i}}" class="collapse show" aria-labelledby="oneAccordion.title" data-parent="#accordion"
+             [ngClass]="oneAccordion.contentClass"
+        >
+          <div class="card-body">
+
+            <app-dynamic-form-content class="form-content-class" [fieldsContainersContent]="oneAccordion.content"
+                                      [form]="form"></app-dynamic-form-content>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+ -->
+
+
+ <ngb-accordion #a="ngbAccordion" activeIds="accordion0">
+  <ngb-panel  *ngFor="let oneAccordion of field.accordionConfig; let i = index;"
+  id="accordion{{i}}"
+ 
+  >
+    <ng-template ngbPanelHeader let-opened="collapsed">
+      <div class="d-flex align-items-center justify-content-between">
+        <button ngbPanelToggle
+        (click)="toggleCollapse('collapse'+i)"
+        class="btn btn-link p-0 btn-name"> {{oneAccordion.title}}</button>
+
+        <div class="last-element">
+          <button class="btn btn-link  info-button"
+                  *ngIf="oneAccordion.info"
+                  ngbPanelToggle
+                  (click)="toggleCollapse('collapse'+i)"
+                  >
+            {{oneAccordion.info}}%
+          </button>
+          <span class="material-icons" *ngIf="collapsedOpenItem !='collapse'+i">
+            keyboard_arrow_right
+          </span>
+
+          <span class="material-icons" *ngIf="collapsedOpenItem ==='collapse'+i">
+            keyboard_arrow_down
+            </span>
+        </div>
+
+      </div>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <app-dynamic-form-content class="form-content-class" [fieldsContainersContent]="oneAccordion.content"
+      [form]="form"></app-dynamic-form-content>
+    </ng-template>
+  </ngb-panel>
+  
+</ngb-accordion>

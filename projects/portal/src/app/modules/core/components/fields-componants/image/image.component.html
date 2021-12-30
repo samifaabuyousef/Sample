@@ -1,0 +1,44 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+ 
+<div 
+
+>
+  
+  <div id="video{{field.key}}"   style="position: relative;">
+    <span class="material-icons close-video" 
+    *ngIf="field.mediaType === 'video' && field.src"
+    (click)="removeMedia()">
+      highlight_off
+      </span>
+ 
+  </div>
+
+  <nbd-upload (imageEvent)="changeImageUrl($event)" 
+  [multiple]="field.multipleImage"
+  [id]="field.key"
+  [imageTextTitle]="getImageText()"
+  [mediaType]="field.mediaType"
+  [required] ="field.required"
+  [ngClass]="{'hide-logo-image': field.src && field.mediaType === 'video'}"
+  (onChange)="fieldChanged(field.key,$event)" ></nbd-upload>
+
+  <div class="img-container " *ngIf="field.src && field.mediaType === 'image'" >
+
+    <span class="material-icons close-image-icon" (click)="removeMedia()">
+      highlight_off
+      </span>
+    <img class="img-upload logo" [src]="field.src"> 
+  </div  >
+</div>
+ 
+
+  
+
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired">This {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="isMaxLength && isRequired && !isValid">
+    This {{field.label}} is not valid, Please choose a color from the color picker
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    Maximum size allowed is {{convert(field.maxLength)}} MB
+  </div>
+</div>

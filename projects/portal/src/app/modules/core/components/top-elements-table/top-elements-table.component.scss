@@ -1,0 +1,139 @@
+
+.top-table-container {
+  background: white;
+  padding-top: 1.5rem;
+  border-radius: 12px;
+  // width: max-content;
+
+  .statistics-container {
+    display: flex;
+    margin: 1.5rem;
+    margin-top: 0;
+
+    .writing-color {
+      color: #210e65;
+
+      h5 {
+        color: #6a6871;
+      }
+
+      .views-container {
+        display: flex;
+        margin: 1.3rem 0;
+        align-items: center;
+
+        .views-number-size {
+          font-weight: bold;
+          font-size: 27px;
+          margin-right: 12px;
+
+          .view-phrase {
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+
+      .top-views-phrase {
+        color: #6a6871;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+    }
+
+    .last-element {
+      margin-left: auto;
+
+      button {
+        border: 3px solid #2bcd9f;
+        background: white;
+        padding: 0.6rem 0.7rem;
+        color: #2bcd9f;
+        font-weight: bold;
+        border-radius: 7px;
+      }
+    }
+  }
+}
+
+.table-container {
+  margin-top: 1.3rem;
+  width: 100%;
+
+  & .header-cell:first-child {
+    color: #59585a;
+    font-size: 16px;
+    font-weight: bold;
+
+    & :first-child {
+      font-weight: 500;
+      // min-width: 310px;
+      padding-bottom: 0.7rem;
+      padding-left: 1.5rem;
+    }
+
+    & :not(:first-child) {
+      font-weight: 500;
+      // min-width: 271px;
+      padding-bottom: 0.7rem;
+    }
+
+    & :last-child {
+      font-weight: 500;
+      // min-width: 88px;
+      padding-bottom: 0.7rem;
+
+    }
+  }
+
+
+  & .row-cell:not(:first-child) {
+    border-bottom: 1px solid #e6e2e2;
+    border-top: 1px solid #e6e2e2;
+
+   
+      & :not(:last-child) {
+        padding: 1rem 1.5rem;
+        color: #817f7f;
+        font-size: 14px;
+        font-weight: 400;
+      }
+  
+      & :last-child {
+        div {
+          display: inline;
+          padding: 4px 4px;
+          background: #f2c8c8;
+          border-radius: 7px;
+          color: #f07a7a;
+        }
+      }
+    
+    
+  }
+}
+
+
+
+// & .row-cell:not(:first-child) {
+//   border-bottom: 1px solid #e6e2e2;
+//   border-top: 1px solid #e6e2e2;
+
+//   & :not(:last-child) {
+//     padding: 1rem 1.5rem;
+//     color: #817f7f;
+//     font-size: 14px;
+//     font-weight: 400;
+//   }
+
+//   & :last-child {
+//     div {
+//       display: inline;
+//       padding: 4px 4px;
+//       background: #f2c8c8;
+//       border-radius: 7px;
+//       color: #f07a7a;
+//     }
+//   }
+// }

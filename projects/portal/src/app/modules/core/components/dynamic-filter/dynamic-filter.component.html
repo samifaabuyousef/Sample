@@ -1,0 +1,14 @@
+<div class="option-container">
+  <div class="element-option"
+       [ngClass]="{'seleted-filter': selectedOption == 'All'}"
+       (click)="changeFilterOption('All')">
+    All
+  </div>
+  <div class="element-option" *ngFor="let option of filterOptions"
+       [ngClass]="{'seleted-filter': selectedOption.toLowerCase() == option.toLowerCase()}"
+       (click)="changeFilterOption(option.toLowerCase())">
+    {{option}}
+
+  </div>
+
+</div>

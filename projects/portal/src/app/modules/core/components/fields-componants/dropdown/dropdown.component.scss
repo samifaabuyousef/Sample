@@ -1,0 +1,12 @@
+.ngx-select__toggle{
+    overflow: hidden !important;
+text-overflow: ellipsis !important;
+width: 81% !important;
+display: -webkit-box !important;
+-webkit-line-clamp: 1 !important;
+-webkit-box-orient: vertical !important;
+}
+.message-info{
+    color: gray;
+    margin-top: 1rem;
+}

@@ -1,0 +1,7 @@
+export const environment = {
+  production: true,
+  baseApiUrl: '/api',
+  clientId: '',
+  clientSecret: '',
+  EncKey: ''
+};

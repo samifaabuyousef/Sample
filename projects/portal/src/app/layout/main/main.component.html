@@ -1,0 +1,30 @@
+<div class="nav-top-bar-nabed">
+  <nbd-top-nav
+    [url]="url"
+    [username]="mainUser ? mainUser.username : ''"
+    [email]="mainUser ? mainUser.email : ''"
+    [avatar]="avatar"
+    [userFullName] = userFullName
+    (logout)="logout()"
+    (changePassword)="changePassword()"
+    (profileSelected)="redirectToProfile()"></nbd-top-nav>
+  <button class="menu-icon" (click)="toggleMenu()"><i class="fa fa-bars" aria-hidden="true"></i></button>
+</div>
+<div #wrapperContent class="mat-drawer-content">
+  <ngx-loading-bar class="progress-bar" [color]="'#1bbd9f'"></ngx-loading-bar>
+
+  <mat-drawer-container class="hcp-row">
+
+        <mat-drawer #sideMenu class="side-bar-mobile mat-drawer-inner-container" mode="side" opened>
+            <nbd-side-bar [url]="url"></nbd-side-bar>
+        </mat-drawer>
+        <mat-drawer-content class="mat-drawer-content">
+
+          <div class="hcp-main">
+
+            <nbd-breadcrumb></nbd-breadcrumb>
+                <router-outlet></router-outlet>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>
