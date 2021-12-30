@@ -8,7 +8,7 @@ import {PageNotFoundComponent} from './modules/core/components/page-not-found/pa
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'main',
     component: MainComponent,
     canActivate: [ProtectedGuard],
     children: [
