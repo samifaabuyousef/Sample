@@ -1,0 +1,27 @@
+<div *ngIf="form !== undefined">
+
+  <app-form-container
+    [cancelRouteLink]="cancelRouteLink"
+    [disableSaveText]="form.invalid"
+    [saveWithOutLeaving]="saveWithOutLeaving"
+    [saveText]="submitText"
+    [deleteButtonsBar]="deleteButtonsBar"
+    [saveAndNotLeavingText]="saveAndNotLeavingText"
+    [whiteBackGround]="whiteBackGround"
+    [isDirty]="form.dirty"
+    (onSubmit)="submit($event)"
+    [routingOnCancel]="routingOnCancel"
+    (onCancel)="onCloseEvent($event)"
+
+  >
+    <app-dynamic-form-content class="form-content-class" [fieldsContainersContent]="fieldsContainers"
+
+                              [form]="form"
+
+    ></app-dynamic-form-content>
+
+  </app-form-container>
+
+
+</div>
+

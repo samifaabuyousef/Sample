@@ -1,0 +1,148 @@
+<!-- Add new speciality -->
+<div class="hcp-table-loading loader-edit-page" *ngIf="loading">
+  <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+</div>
+<app-campaign-filter [filterOptions]="typeArray" [selectedFilter]="filterValue ? filterValue : 'Details'"
+                     (filterselectedOptionion)="changeFilter($event)"
+                     *ngIf="campaignId != null"
+></app-campaign-filter>
+
+<app-form-container *ngIf=" ! loading"
+                    [cancelRouteLink]="'/camps/campaigns'"
+                    [disableSaveText]="form.invalid || isSubmitting"
+                    [isDirty]="form.dirty"
+                    (onSubmit)="submit()">
+  <h2 class="hcp-title-h2"> {{ pageTitle }}</h2>
+  <div [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-card top-details">
+          <h5>Details</h5>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div>
+                  <label class="required-field">Brand</label>
+                  <ngx-select
+                    formControlName="brand_id"
+                    [allowClear]="true"
+                    [items]="brandList"
+                    optionValueField="optionId"
+                    optionTextField="optionTitle"
+                    placeholder="Select...">
+                  </ngx-select>
+                  <span *ngIf="form.controls['brand_id'].touched &&  form.controls['brand_id'].errors?.required"
+                        class="hcp-body-text hcp-error-field">This field is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="title" class="required-field">English Name</label>
+                <input formControlName="generic_name" type="text" class="form-control" id="title">
+                <span *ngIf="form.controls['generic_name'].touched &&  form.controls['generic_name'].errors?.required"
+                      class="hcp-body-text hcp-error-field">This field is required</span>
+                <span *ngIf="form.controls['generic_name'].touched  && form.controls['generic_name'].errors?.maxlength"
+                      class="hcp-body-text hcp-error-field">the max title length is {{form.controls['generic_name'].errors?.maxlength.requiredLength}}
+                  character
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="title" class="required-field">Arabic Name</label>
+                <input formControlName="name" type="text" class="form-control" id="name">
+                <span *ngIf="form.controls['name'].touched &&  form.controls['name'].errors?.required"
+                      class="hcp-body-text hcp-error-field">This field is required</span>
+                <span *ngIf="form.controls['name'].touched  && form.controls['name'].errors?.maxlength"
+                      class="hcp-body-text hcp-error-field">the max title length is {{form.controls['name'].errors?.maxlength.requiredLength}}
+                  character
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div>
+                  <label class="required-field">Country</label>
+                  <ngx-select
+                    formControlName="country_id"
+                    [allowClear]="true"
+                    [items]="countryArray"
+                    optionValueField="optionId"
+                    optionTextField="optionTitle"
+                    placeholder="Select...">
+                  </ngx-select>
+                  <span *ngIf="form.controls['country_id'].touched &&  form.controls['country_id'].errors?.required"
+                        class="hcp-body-text hcp-error-field">This field is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 date-picker-style">
+              <div class="form-group">
+                <label for="title" class="required-field">Start Date</label>
+
+
+                <input
+                  matInput
+                  (click)="startpicker?.open()"
+                    [matDatepicker]="startpicker"
+                    formControlName="start_date"
+                   placeholder="dd/mm/yyyyy"
+                   name="dateFieldView"
+                   style="cursor: pointer"
+                   (focus)="startpicker?.open()"
+                   readonly
+                >
+                <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+                <mat-datepicker #startpicker></mat-datepicker>
+                <span *ngIf="form.controls['start_date'].touched &&  form.controls['start_date'].errors?.required"
+                      class="hcp-body-text hcp-error-field">This field is required</span>
+              </div>
+            </div>
+            <div class="col-sm-6 date-picker-style">
+              <div class="form-group"
+                   (click)="endpicker?.open()"
+                   style="cursor: pointer"
+              >
+                <label for="title" class="required-field">End Date</label>
+
+                <input
+                  matInput
+                  [min]="form.controls.start_date.value"
+                  [matDatepicker]="endpicker"
+                  formControlName="end_date"
+                  placeholder="dd/mm/yyyyy"
+                  name="dateFieldView"
+                  style="cursor: pointer"
+                  (focus)="endpicker?.open()"
+                  readonly
+                >
+                <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+                <mat-datepicker #endpicker></mat-datepicker>
+                <span *ngIf="form.controls['end_date'].touched &&  form.controls['end_date'].errors?.required"
+                      class="hcp-body-text hcp-error-field">This field is required</span>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <label >Notification Channel</label>
+              <div style="display: flex;">
+                <div class="radio-box-container">
+                  <input type="radio" value="sms" formControlName="notification_channel" >
+                  <span class="radio-label">SMS</span>
+                </div>
+                <div class="radio-box-container">
+                  <input type="radio" value="whatsapp" formControlName="notification_channel" checked>
+                  <span class="radio-label">Whatsapp</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-form-container>

@@ -1,0 +1,28 @@
+<div class="sticky-row-container">
+  <ng-content></ng-content>
+</div>
+<div class="row " *ngIf="!deleteButtonsBar">
+  <div class="sticky-row col-sm-12 d-flex justify-content-end"
+       [ngClass]="[(routingOnCancel) ? 'sticky-row-margin' : '' , (whiteBackGround) ? 'form-container-button' : '']"
+  >
+    <div class="pr-0">
+      <button [routerLink]="[cancelRouteLink]" *ngIf="routingOnCancel"
+              class="hcp-body-text-highlight hcp-button hcp-button--outlined hcp-button--fill-up bg-white mr-4">
+        {{ cancelText }}
+      </button>
+
+      <button *ngIf="!routingOnCancel" (click)="close()"
+              class="hcp-body-text-highlight hcp-button hcp-button--outlined hcp-button--fill-up bg-white mr-4">
+        {{ cancelText }}
+      </button>
+      <button [disabled]="disableSaveText" (click)="submit('saveAndExit')"
+              class="hcp-body-text-highlight hcp-button hcp-button-submit hcp-button--contained mr-4">
+        {{ saveText }}
+      </button>
+      <button [disabled]="disableSaveText" (click)="submit('save')" *ngIf="saveWithOutLeaving"
+              class="hcp-body-text-highlight hcp-button hcp-button-submit hcp-button--contained ">
+        {{ saveAndNotLeavingText }}
+      </button>
+    </div>
+  </div>
+</div>

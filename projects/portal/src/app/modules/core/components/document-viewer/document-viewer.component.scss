@@ -1,0 +1,9 @@
+::ng-deep {
+  pdf-page-number input {
+    max-height: 25px;
+  }
+
+  pdf-paging-area {
+    direction: ltr !important;
+  }
+}

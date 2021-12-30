@@ -1,0 +1,44 @@
+<div *ngFor="let fieldContainer of fieldsContainersContent"
+     [ngClass]="(fieldContainer.customClass != '') ? fieldContainer.customClass : ''"
+>
+
+  <div *ngIf="( fieldContainer.content.subContainerClass != '' && fieldContainer.content.subContainerClass != undefined)
+   && fieldContainer.type === 'Container'  && !fieldContainer.content.hiddenContainer"
+       [ngClass]="  (fieldContainer.content.containerClass != '') ? fieldContainer.content.containerClass : ''">
+    <div
+      [ngClass]="(fieldContainer.content.subContainerClass != '') ? fieldContainer.content.subContainerClass : ''">
+      <h5
+        *ngIf="fieldContainer.content.containerTitle"
+        [ngClass]="(fieldContainer.content.subContainerTitleClass != '') ? fieldContainer.content.subContainerTitleClass : ''">
+        {{fieldContainer.content.containerTitle}}
+      </h5>
+      <app-dynamic-form-content *ngIf="fieldContainer.content. nodeElements.length>0"
+                                [fieldsContainersContent]="fieldContainer.content. nodeElements" [form]="form">
+      </app-dynamic-form-content>
+    </div>
+  </div>
+
+  <app-dynamic-form-content *ngIf="( fieldContainer.content.subContainerClass === '' || fieldContainer.content.subContainerClass === undefined)
+                                &&
+                                fieldContainer.type === 'Container'
+                                && !fieldContainer.content.hiddenContainer
+                               && fieldContainer.content.nodeElements.length>0"
+
+                            [ngClass]="(fieldContainer.content.containerClass != '') ? fieldContainer.content.containerClass : ''"
+                            [fieldsContainersContent]="fieldContainer.content. nodeElements" [form]="form">
+  </app-dynamic-form-content>
+
+
+  <div *ngIf="fieldContainer.type === 'Elements'  "
+       [ngClass]="(fieldContainer.arrayContainerClass != '') ? fieldContainer.arrayContainerClass : ''">
+    <app-field
+      (fieldChangingValue)="onChangingField($event)"
+      *ngFor="let field of fieldContainer.content" [field]="field"
+      [form]="form"
+      [ngClass]=" (field.customClass != '' && !field.hidden) ? field.customClass : ''"
+    ></app-field>
+
+
+  </div>
+
+</div>

@@ -1,0 +1,25 @@
+<!-- <span class="material-icons reset-filter-icon " (click)="resetFilter()">
+    remove_circle
+    </span> -->
+<div class=" reset-filter-icon " *ngIf="showReset" (click)="resetFilter()">Reset</div>
+<div class="general-filter-container" *ngIf="!TopFilter">
+  <app-dynamic-form-content class="form-content-class" [fieldsContainersContent]="fieldsContainers"
+                            [form]="form"></app-dynamic-form-content>
+
+  <div class="button-class"
+
+       [ngClass]="{'center-btn': !showResultSatetment}">
+<span *ngIf="showResultSatetment">
+    Result of the above filters is {{resultsNumber}} {{getResultUnit()}}
+</span>
+    <button class="button-filter"
+            (click)="submit()">show result
+    </button>
+
+  </div>
+
+</div>
+
+<app-dynamic-form-content *ngIf="TopFilter" class="form-content-class top-filter "
+                          [fieldsContainersContent]="fieldsContainers"
+                          [form]="form"></app-dynamic-form-content>

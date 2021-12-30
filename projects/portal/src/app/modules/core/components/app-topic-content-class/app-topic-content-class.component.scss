@@ -1,0 +1,272 @@
+$primary-color : #1bbd9e;
+$panel-header-color : #f0f0f0;
+$panel-space-color : #1bbd9e87;
+$indicator-background-color: #f7f7f7a3;
+
+::ng-deep .topics-section {
+
+  .mat-expansion-panel-header {
+    flex-direction: row-reverse;
+  }
+
+  .mat-expanded.mat-expansion-panel-spacing span.mat-expansion-indicator {
+    transform: rotate(180deg) !important;
+    margin-right: 10px;
+    background-color: $panel-space-color;
+    padding: 5px;
+    padding-top: 0;
+    border-radius: 4px;
+  }
+
+  .mat-expanded .mat-expansion-panel-header {
+    background-color: $panel-header-color !important;
+    border-left: 4px solid $primary-color;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+
+  .mat-expanded {
+    border-top-left-radius: 0 !important;
+  }
+
+  .mat-expansion-indicator::after {
+    border-color: $primary-color;
+  }
+
+  .mat-expanded span.mat-expansion-indicator {
+    background-color: $indicator-background-color;
+    margin-right: 5px;
+    padding: 4px;
+    padding-top: 0;
+    border-radius: 4px;
+  }
+
+  .mat-expanded span.mat-expansion-indicator::after {
+    border-color: $primary-color;
+  }
+
+  /* style the checked checkbox */
+  .pd-checkbox input:checked + label:before {
+    content: "\f00c";
+    font-family: "FontAwesome";
+    background: $primary-color;
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .pd-checkbox span {
+    margin-left: 15px;
+    font-weight: bold;
+    margin-top: 1px;
+  }
+
+  .pd-checkbox input:checked ~ span {
+    color: $primary-color;
+  }
+
+  p.pd-checkbox {
+    display: flex;
+    align-items: center;
+  }
+
+  .topics-content-class-filed {
+    margin-bottom: 10px;
+  }
+
+  .mat-expanded .mat-expansion-panel-content {
+    margin-top: 10px;
+  }
+
+
+  span.mat-expansion-indicator {
+    transform: rotate(270deg) !important;
+    margin-right: 10px;
+    padding: 5px;
+    padding-top: 0;
+  }
+
+  .mat-expansion-panel-header-title {
+    color: rgba(0, 0, 0, 0.87) !important;
+    font-weight: bold;
+  }
+
+  .mat-accordion .mat-expansion-panel {
+    margin-bottom: 10px;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    border-radius: 4px !important;
+    background-color: #f7f7f7a3;
+  }
+  .mat-expansion-panel-body {
+    padding-left: 55px;
+  }
+  .mat-expansion-panel-header-description {
+    justify-content: flex-end;
+  }
+
+}
+
+.header-with-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-with-search h5 {
+  margin-bottom: 0 !important;
+}
+
+.hcp-no-data p {
+  text-align: center;
+  margin: 30px;
+  font-size: 17px;
+  color: $primary-color;
+}
+
+::ng-deep mat-progress-spinner.mat-progress-spinner.mat-primary.mat-progress-spinner-indeterminate-animation {
+  margin: auto;
+}
+
+
+::ng-deep .topics-section .mat-expansion-panel-header-title {
+  text-transform: capitalize;
+}
+
+::ng-deep .topics-section .pd-checkbox span {
+  text-transform: capitalize;
+}
+
+
+::ng-deep .mat-expansion-panel-header-description {
+  flex-basis: 20%;
+}
+
+::ng-deep .topics-section .mat-expansion-panel-header-title {
+  flex-basis: 85%;
+  overflow: hidden;
+}
+
+::ng-deep span.topics-section-summary {
+  display: inline-block;
+  width: 70%;
+  max-width: 70% !important;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  margin-left: 20px;
+  color: #727272;
+  font-size: 14px;
+}
+
+
+::ng-deep .search-section form {
+  display: flex;
+}
+
+.search-section{
+  ::ng-deep .hcp-filter__dropdown {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 24px;
+    display: inline-block;
+    min-width: 230px;
+
+    .ngx-select__toggle:hover {
+      color: #333 !important;
+      background-color: #e6e6e6 !important;
+      border-color: #adadad !important;
+    }
+
+    .ngx-select__toggle.btn.form-control,
+    input.ngx-select__search.form-control.ng-star-inserted {
+      width: 100%;
+      height: 40px;
+      background: #fff;
+      border-radius: 5px;
+      font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 26px;
+      color: #454C5C;
+      border-color: #D1D8EB;
+      padding: 0.370rem 0.75rem;
+
+      &::-webkit-input-placeholder {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 19px;
+        color: #454C5C;
+      }
+
+      &::-moz-placeholder {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px !important;
+        line-height: 19px;
+        color: #454C5C !important;
+      }
+
+      &:-ms-input-placeholder {
+        /** notice that ie has only a single colon) */
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px !important;
+        line-height: 19px;
+        color: #454C5C !important;
+      }
+
+      &::-webkit-input-placeholder {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px !important;
+        line-height: 19px;
+        color: #454C5C !important;
+      }
+
+      &::placeholder {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px !important;
+        line-height: 19px;
+        color: #454C5C !important;
+      }
+
+    }
+
+    ul.ngx-select__choices.dropdown-menu.ng-star-inserted.show,
+    .dropdown-menu {
+      background: #D1D8EB;
+      border-radius: 5px;
+      border: none;
+      min-width: 100%;
+      width: 100% !important;
+      margin-top: 3px !important;
+      text-transform: capitalize;
+    }
+
+    .ngx-select__item_active {
+      background: rgba(255, 255, 255, .3) !important;
+
+    }
+
+    a.ngx-select__item.dropdown-item.ng-star-inserted {
+      font-family: Nunito Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 19px;
+      color: #454C5C !important;
+    }
+
+    input.ngx-select__search.form-control.ng-star-inserted {
+      padding-top: 0.36rem !important;
+    }
+
+    .ngx-select__toggle {
+      min-height: 39px;
+    }
+  }
+}

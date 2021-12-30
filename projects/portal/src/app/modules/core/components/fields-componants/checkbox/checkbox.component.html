@@ -1,0 +1,32 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'"
+
+[ngClass]="field.insideFieldClass"
+>
+
+
+  <mat-checkbox *ngIf="!field.customiseCheckBox"
+    class="example-margin"
+    [formControlName]="field.key"
+    [ngClass]="{ 'disabled-field-class': isDisabled}"
+
+  > 
+    {{field.label}}
+  </mat-checkbox>
+  <label [attr.for]="field.key"
+  style="margin-right: 12px;"
+   *ngIf="field.customiseCheckBox" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+  <label class="hcp-switch" *ngIf="field.customiseCheckBox">
+    <input type="checkbox" [formControlName]="field.key"
+    [ngClass]="{ 'disabled-field-class': isDisabled}">
+    <span></span>
+  </label>
+
+
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired">This {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="isMaxLength && isRequired && !isValid">
+    This {{field.label}} is not valid, Please choose a color from the color picker
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>

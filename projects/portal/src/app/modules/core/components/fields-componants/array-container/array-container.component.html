@@ -1,0 +1,90 @@
+<div [formGroup]="form" class="form-group position-class"
+     [ngClass]="field.fieldContainerClass"
+     [class.center-elements]="field.controlType=='checkbox'">
+
+  <button class="add-button" (click)="openModal(null,field.key,field)">{{field.buttonText}}</button>
+
+
+  <table class="table" *ngIf="fieldFormArray.controls.length>0">
+    <thead>
+    <tr>
+      <th *ngFor="let filedKey of field.arrayElementKeys " class="header-border">{{filedKey.label}}</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let controlRow of fieldFormArray.controls; index as i">
+      <td style="padding-top: 2rem;"
+          *ngFor='let filedKey of field.arrayElementKeys ;'>{{getValue(controlRow, filedKey.key)}}</td>
+
+
+      <td class="action-cell">
+
+        <button (click)="openModal(null,field.key,field,true,i)"
+                *ngIf="getValue(controlRow, 'valid')"
+                class="hcp-button-edit hcp-icon hcp-icon--middle hcp-icon--edit edit-btn"></button>
+
+        <button (click)="openModal(null,field.key,field,true,i)"
+                *ngIf="!getValue(controlRow, 'valid')"
+                class="hcp-button-edit hcp-icon hcp-icon--prescription"></button>
+
+
+        <button (click)="deleteRow(i)" class="hcp-button-delete hcp-icon hcp-icon--delete"
+                *ngIf="getValue(controlRow, 'valid')"
+        ></button>
+
+
+      </td>
+
+    </tr>
+
+
+    </tbody>
+  </table>
+
+
+  <div *ngIf="fieldFormArray.controls.length <= 0">
+    No licenses for this account yet
+  </div>
+  <div *ngIf="field.description">{{getDescription()}}</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired "> {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid != undefined">
+    {{field.label}}  {{form.get(field.key).errors.invalid }}
+  </div>
+
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid === undefined">
+    {{field.label}} is not valid
+  </div>
+
+
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>
+
+
+<ngx-smart-modal #modal
+                 (onClose)="closeModal()"
+                 (onCloseFinished)="modalKey = undefined"
+                 [dismissable]="false"
+                 identifier="conditionModal"
+                 customClass="nsm-dialog-animation-ttb nsm-centered">
+  <ng-container *ngIf="openModel">
+    <h5 class="header-width">{{modalKey}}</h5>
+    <div class="hcp-table-loading loader-edit-page" *ngIf="modelFields.length <= 0">
+      <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <app-dynamic-form *ngIf="openModel && modelFields.length > 0" (onSubmit)="addContentClass($event)"
+                      [fieldsContainers]="modelFields"
+                      [routingOnCancel]="false"
+                      (onFormStatusChange)="changeFormStatus($event)"
+                      (onCancel)="closeModal()"
+
+    ></app-dynamic-form>
+  </ng-container>
+
+
+</ngx-smart-modal>

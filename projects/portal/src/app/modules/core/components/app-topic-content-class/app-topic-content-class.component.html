@@ -1,0 +1,88 @@
+<div class="topics-section">
+  <div id="accordion">
+    <div class="form-card elememt-distance">
+      <div class="header-with-search">
+        <h5>Topics</h5>
+        <div class="search-section">
+          <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)">
+            <div class="hcp-filter__dropdown ">
+              <ngx-select class="list-select"
+                          [items]="items"
+                          [placeholder]="selectTitle"
+                          (selectionChanges)="itemSelected($event)"
+                          optionTextField="description"
+                          optionValueField="id"
+                          [ngClass]="(false) ? 'disable-select' : ''"
+              >
+              </ngx-select>
+            </div>
+            <div class="hcp-form__search">
+              <input
+                #searchInput
+                placeholder="Search"
+                (change)="onChange()"
+                [value]="filterValue"
+                [attr.disabled]="(isSearching) ? '' : null"
+              >
+              <button
+                type="submit"
+                [disabled]="(isSearching)"
+              ></button>
+            </div>
+          </form>
+        </div>
+
+<!--        <label class="hcp-switch">-->
+<!--          <input type="checkbox" (change)="changeStatus($event.target.checked)"-->
+<!--                 [checked]="false">-->
+<!--          <span></span>-->
+<!--        </label>-->
+      </div>
+      <div class="topics" [formGroup]="form">
+        <div>
+          <mat-accordion formArrayName="topics"
+                         *ngIf="topics.controls.length > 0 && !isSearching && isAllTopicsVisible()">
+            <ng-template ngFor let-i="index" let-c="count" let-topic [ngForOf]="topics.controls">
+              <mat-expansion-panel
+                class="topic"
+                *ngIf="topic.value.visible"
+                [formGroupName]="i"
+              >
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <span class="topics-section-title">{{ topic.value.title }}</span>
+                  </mat-panel-title>
+                  <mat-panel-description>({{topic.value.count}}) Topics Selected</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div formArrayName="topicContentClasses">
+                  <div *ngFor="let topicContentClass of topicContentClasses(topic).controls; let j=index">
+                    <fieldset *ngIf="topicContentClass.value.visible">
+                      <div [formGroupName]="j" class="topics-content-class-filed">
+                        <p class="form-field checkbox3 pd-checkbox required no-label">
+                          <input type="checkbox" formControlName="topicContentClassCheck"
+                                 value="{{topicContentClass.value.id}}"/>
+                          <label class="inline"></label>
+                          <span>{{topicContentClass.value.title}}</span>
+                        </p>
+                      </div>
+
+                    </fieldset>
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </ng-template>
+
+          </mat-accordion>
+          <div class="hcp-no-data"
+               *ngIf="(topics.controls.length == 0 && !isSearching) || (!isAllTopicsVisible() && !isSearching)">
+            <p>No Topics Found</p>
+          </div>
+          <div class="hcp-table-loading" *ngIf="(isSearching)">
+            <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

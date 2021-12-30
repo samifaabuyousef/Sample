@@ -1,0 +1,69 @@
+<div mat-dialog-content class="dialog">
+
+  <mat-tab-group [(selectedIndex)]="value">
+    <mat-tab label="Upload Image">
+
+      <div class="container image-upload-tab-container">
+        <p class="choose-lable">choose image </p>
+        <nbd-upload (onChange)="imageChanged($event)"></nbd-upload>
+
+
+        <div class="form-group distance-between-elements">
+          <label for="title">image width</label>
+          <input (change)="onWidthChange($event)" type="text" class="form-control">
+
+        </div>
+        <div class="form-group">
+          <label for="title">image height</label>
+          <input (change)="onHeightChange($event)" type="text" class="form-control">
+
+        </div>
+
+
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Image Library">
+      <div class="container">
+        <div class="images-container">
+          <div *ngFor="let image of images; let i= index" class="image-container"
+               [ngClass]="{'selected-image-class' : selectedIndex ===i}" (click)="onSelectImage(i,image.image) ">
+            <img src="{{image.image}}">
+          </div>
+        </div>
+        <div class="form-group distance-between-elements">
+          <label for="title">image width</label>
+          <input (change)="onWidthChange($event)" type="text" class="form-control">
+
+        </div>
+        <div class="form-group">
+          <label for="title">image height</label>
+          <input (change)="onHeightChange($event)" type="text" class="form-control">
+
+        </div>
+
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()" class="cancel-button">cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial [disabled]="loading" class="cancel-button"
+            [ngClass]="{'disabled-button' : loading}"
+    >Ok
+    </button>
+  </div>
+</div>
+
+
+<!--<nav mat-tab-nav-bar>
+  <a *ngFor="let link of navLinks" mat-tab-link
+     #rla="routerLinkActive"
+     [active]="isViewInitialized && isLinkActive(rla)"
+     [routerLink]="link.path"
+     routerLinkActive>
+    {{link.label}}
+  </a>
+</nav>
+<router-outlet></router-outlet> -->

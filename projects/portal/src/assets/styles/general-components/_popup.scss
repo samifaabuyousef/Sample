@@ -1,0 +1,125 @@
+.hcp-popup {
+  &--small {
+    max-width: rem(350px);
+  }
+  &--middle {
+    max-width: rem(370px);
+  }
+  &--large {
+    max-width: rem(470px);
+  }
+  &--three-column-table {
+    max-width: rem(440px);
+  }
+  &--two-column-table {
+    max-width: rem(425px);
+  }
+  &--seven-column-table {
+    max-width: rem(1025px);
+    textarea {
+      width: 55%;
+    }
+  }
+  width: 100%;
+  //box-shadow: 0px rem(2px) rem(8px) rgba(152, 142, 222, 0.08);
+  border-radius: rem(8px);
+  padding: rem(24px) 0;
+  &--dark {
+    background: $hcp-dark-background-color;
+  }
+  &--light {
+    background: #fff;
+  }
+  &__row {
+    width: 100%;
+    // padding: 0 rem(24px);
+    display: flex;
+    align-items: center;
+    &:not(:first-child) {
+      margin-top: rem(24px);
+    }
+    &--end {
+      justify-content: flex-end;
+      .hcp-button:not(:first-child) {
+        @include rtl(margin-left, 24px, 0);
+        @include rtl(margin-right, 0, 24px);
+      }
+    }
+    &--start {
+      justify-content: flex-start;
+    }
+    &--center {
+      justify-content: center;
+    }
+    &--between {
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: normal;
+    }
+  }
+  &__scrolled {
+    height: rem(230px);
+    margin: rem(16px) rem(18px) 0 rem(24px);
+    &--large {
+      height: 100vh;
+    }
+  }
+  .hcp-button-show {
+    color: #454C5C;
+  }
+  .hcp-title-h2,
+  .hcp-body-text-highlight,
+  .hcp-popup__text {
+    color: $hcp-title-color;
+  }
+  &__filter {
+    @include rtl(padding-left, 0, 24px);
+    @include rtl(padding-right, 24px, 0);
+    overflow-y: hidden;
+    label {
+      padding: rem(8px) 0;
+    }
+    .hcp-body-text-highlight {
+      color: $hcp-title-color;
+    }
+    .hcp-body-text--colored {
+      color: $hcp-clickable-text-color;
+      padding-top: 10px;
+    }
+  }
+  &__filter-row {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__filter-group {
+    margin-top: rem(16px);
+  }
+  &__filter-dropdown-icon {
+    &--opened {
+      transform: rotate(180deg);
+    }
+  }
+  &__filter-item {
+    span {
+      &:not(:first-child) {
+        @include rtl(margin-left, 8px, 0);
+        @include rtl(margin-right, 0, 8px);
+      }
+    }
+  }
+  &__header {
+    display: flex;
+    align-items: baseline;
+    @include rtl(margin-left, 24px, 0);
+    @include rtl(margin-right, 0, 24px);
+    .hcp-body-text-highlight {
+      color: $hcp-text-color;
+    }
+    .hcp-body-text {
+      color: $hcp-secondary-text-color;
+      @include rtl(margin-left, 8px, 0);
+      @include rtl(margin-right, 0, 8px);
+    }
+  }
+}

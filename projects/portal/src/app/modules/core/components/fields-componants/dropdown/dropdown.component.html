@@ -1,0 +1,64 @@
+<div [formGroup]="form" class="form-group"
+     [class.center-elements]="field.controlType=='checkbox'"
+     [ngClass]="field.insideFieldClass"
+>
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+  <div [ngStyle]="{'width': field.width}">
+    <ngx-select class="select-ngx-class"
+                [placeholder]="field.placeholder"
+                [items]="field.options"
+                optionTextField="title"
+                optionValueField="id"
+                (selectionChanges)="changeFieldValue($event)"
+                [multiple]="field.multiple"
+                [allowClear]="field.allowClear"
+                [noAutoComplete]="field.noAutoComplete"
+                [formControlName]="field.key">
+      <ng-template *ngIf="field.enableAdd" ngx-select-option ngx-select-option-selected let-option let-text="text">
+        <ng-container [ngSwitch]="option.data.id">
+          <div *ngSwitchCase="'0'">
+            <hr *ngIf="option.data.title === ''">
+          </div>
+          <div *ngSwitchCase="'-1'" (click)="openModal($event, field.key,  field)">+ Add new</div>
+          <div *ngSwitchCase="''">{{option.data.title}}</div>
+          <div *ngSwitchDefault>{{option.data.title}}</div>
+        </ng-container>
+      </ng-template>
+
+      <ng-template ngx-select-option-not-found let-input>
+        <div *ngIf="!field.enableAdd">"{{input}}" not found</div>
+        <div *ngIf="field.enableAdd" (click)="openModalWithValue($event, field.key,  field, input)">"{{input}}" not
+          found, click <b>here</b> to add
+        </div>
+      </ng-template>
+    </ngx-select>
+  </div>
+  <div class="hcp-body-text message-info" *ngIf="field.messageInfo != null "> {{field.messageInfo}}</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired">This {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="isMaxLength && isRequired && !isValid">
+    This {{field.label}} is not valid
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>
+
+
+<ngx-smart-modal #modal
+                 (onClose)="closeModal()"
+                 (onCloseFinished)="modalKey = undefined"
+                 [dismissable]="false"
+                 identifier="conditionModal"
+                 customClass="nsm-dialog-animation-ttb nsm-centered">
+  <ng-container *ngIf="openModel">
+    <h5 class="header-width">{{modalKey}}</h5>
+    <app-dynamic-form *ngIf="openModel"
+                      (onSubmit)="addContentClass($event)" [fieldsContainers]="modelFields"
+                      [routingOnCancel]="false"
+                      (onCancel)="closeModal()"
+
+    ></app-dynamic-form>
+  </ng-container>
+
+
+</ngx-smart-modal>

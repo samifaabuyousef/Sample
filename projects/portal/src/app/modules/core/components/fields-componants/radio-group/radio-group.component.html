@@ -1,0 +1,37 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+    <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+    <div [ngStyle]="{'width': field.width}" style="display: flex;">
+  
+        
+        <div *ngFor="let item of field.radioFields" class="radio-box-container">
+            <input type="radio" [value]="item.value" [formControlName]="field.key">
+              <span class="radio-label">{{item.label}}</span>
+        </div>
+          <!-- <label>
+            <input type="radio" value="Female" [formControlName]="field.key">
+              <span>female</span>
+          </label> -->
+
+     
+    </div>
+    <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired "> {{field.label}} is required</div>
+    <div class="hcp-body-text hcp-error-field"
+         *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid != undefined">
+         <span *ngIf="field.errorMessage != null">{{form.get(field.key).errors.invalid }}</span>
+         <span *ngIf="!field.errorMessage ">{{field.label}} {{form.get(field.key).errors.invalid }}</span>
+         
+    </div>
+  
+    <div class="hcp-body-text hcp-error-field"
+         *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid === undefined">
+         <span *ngIf="field.errorMessage != null">{{field.errorMessage}}</span>
+         <span *ngIf="!field.errorMessage">{{field.label}} is not valid</span>
+       
+    </div>
+  
+  
+    <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+      the max title length is {{field.maxLength}} character
+    </div>
+  </div>
+  

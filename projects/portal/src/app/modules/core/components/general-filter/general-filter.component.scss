@@ -1,0 +1,49 @@
+.button-class {
+  position: relative;
+  bottom: 17px;
+  right: -26px;
+  display: flex;
+  -webkit-box-align: end;
+  align-items: flex-end;
+  background: white;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+  width: 94%;
+
+  span {
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+
+    /* Paragraph text #717889 */
+    color: #717889;
+    margin-right: 12px;
+  }
+}
+
+.general-filter-container {
+  position: relative;
+  background: white;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(152, 142, 222, .08);
+}
+
+
+.reset-filter-icon {
+  position: absolute;
+  top: 29px;
+  right: 19px;
+  z-index: 1;
+  cursor: pointer;
+  color: #1bbd9f;
+}
+
+.center-btn {
+  justify-content: center !important;
+  right: -12px;
+}

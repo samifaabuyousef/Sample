@@ -1,0 +1,36 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+    <!-- <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label> -->
+    <div [ngStyle]="{'width': field.width}" [ngClass]="{'flag-container-class':field.flag != ''}">
+      <span class="material-icons flag-icon-class" *ngIf="field.flag != ''">
+        settings_cell
+        </span>
+      <input 
+       [formControlName]="field.key"
+             [value]="form.get(field.key).value"
+             [placeholder]="field.placeholder"
+             [value]="field.label"
+             [ngClass]="field.insideFieldClass "
+             [min]="field.minValue"
+           
+            
+           
+             (click)="buttonClick()"
+             [id]="field.key" [type]="field.type" class="form-control">
+    </div>
+    <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired "> {{field.label}} is required</div>
+    <div class="hcp-body-text hcp-error-field" 
+    *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid != undefined">
+       {{field.label}}  {{form.get(field.key).errors.invalid }}
+    </div>
+  
+    <div class="hcp-body-text hcp-error-field" 
+    *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid === undefined">
+       {{field.label}} is not valid
+    </div>
+    
+  
+    <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+      the max title length is {{field.maxLength}} character
+    </div>
+  </div>
+  

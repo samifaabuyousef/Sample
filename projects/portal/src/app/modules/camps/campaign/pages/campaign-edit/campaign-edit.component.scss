@@ -1,0 +1,68 @@
+::ng-deep {
+  .col-sm-6.date-picker-style .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col-sm-6.date-picker-style .form-group .mat-form-field-label {
+    top: 50% !important;
+  }
+
+  .col-sm-6.date-picker-style .mat-form-field-infix {
+    border: 0;
+  }
+
+  .col-sm-6.date-picker-style mat-datepicker-toggle .mat-icon-button {
+    bottom: 0;
+  }
+
+}
+
+::ng-deep {
+  input[type="radio"] {
+    appearance: none;
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    padding: 2px;
+    background-clip: content-box;
+    border: 1.8px solid #717889;
+    border-radius: 50%;
+    margin-right: 9px;
+  }
+
+  input[type="radio"]:checked {
+    background-color: #6861AC;
+    border: 1.8px solid #6861AC;
+  }
+
+  /* optional styles for centering radiobuttons */
+  .sound-signal {
+    display: flex;
+    align-items: center;
+  }
+
+  .radio-box-container {
+    display: flex;
+    margin-right: 12px;
+    align-items: center;
+  }
+
+  .radio-label {
+    font-size: 14px;
+    color: #717889;
+  }
+  input.mat-input-element {
+    margin-top: 0 !important;
+  }
+
+  .col-sm-6.date-picker-style .mat-form-field-infix {
+    padding-bottom: 0;
+  }
+
+}
+
+
+.date-picker-style .mat-icon-button{
+  bottom:15px !important;
+}

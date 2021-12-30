@@ -1,0 +1,195 @@
+<div [formGroup]="form" class="form-group"
+     [class.center-elements]="field.controlType=='calendar'"
+     [ngClass]="field.insideFieldClass"
+
+>
+  <div *ngIf="field.buttonChoices && field.buttonChoices.length>0" class="choices-btn">
+    <div class="selected-choice">
+      <div class="choice-name" (click)="addSlot('video')">
+        {{field.buttonChoices[0]}}
+      </div>
+      <span (click)="showButtonChoices()" class="material-icons change-choice-icon" #displayChoicesIcon>
+      keyboard_arrow_down
+      </span>
+    </div>
+    <div *ngIf="appearMenuAction" style="    margin-top: 7px;">
+
+      <ul class="choices-list">
+        <li
+          (click)="addSlot('ad')">{{field.buttonChoices[1]}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="channel-container">
+    <div class="chnannel-name-container" >
+
+      <div class="hcp-table-loading loader-slot-list" *ngIf="loadingSlotList">
+        <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+      </div>
+
+      <!-- appScrollable appOffsetTop -->
+      <div appScrollable *ngIf="!loadingSlotList" style="overflow-y: auto;" 
+       cdkDropList (cdkDropListDropped)="drop($event)">
+        <span class="name"   cdkDrag appOffsetTop
+              [ngClass]="{'selected-element': getValue(controlRow, 'id') === getValue(selectedSlotControlRow, 'id')}"
+              
+              *ngFor="let controlRow of fieldFormArray.controls; index as i"
+
+        >
+          <span class="material-icons" style="margin-right: 7px;">
+            drag_handle
+            </span>
+            <span (click)="showSlotVideos(controlRow,getValue(controlRow, 'id'))">
+              {{getValue(controlRow, field.arrayElementKeys[0].key)}}
+            </span>
+         
+
+          <span class="badge badge-pill badge-danger" style="margin-left: auto;"
+                *ngIf="getValue(controlRow, 'slot_type') === 'video'"> Video</span>
+            <span class="badge badge-pill badge-success" style="margin-left: auto;"
+                  *ngIf="getValue(controlRow, 'slot_type') === 'ad'">
+            Ad</span>
+
+            <span class="material-icons delete-icon" style="margin-left: 3px;"
+             (click)="deleteSlot(getValue(controlRow, 'id'))">
+              delete
+              </span>
+
+          </span>
+        </div>
+
+
+    </div>
+
+
+    <div class="time-container slot-details" *ngIf="displaySlotItems() "
+    >
+    
+      <div class="slot-details-container" style="flex-direction: column;" *ngIf="displaySlotItems() ">
+        <h5 style="margin-bottom: 1rem;">
+                {{getValue(selectedSlotControlRow, field.arrayElementKeys[0].key)}} details</h5>
+        <div class="slot-name-box" [formGroup]="selectedSlotControlRow">
+          <div class="slot-name-field-container">
+            <span class="slot-name-label">Slot Name : </span>
+            <input
+              [formControlName]="field.arrayElementKeys[0].key"
+
+              [value]="getValue(selectedSlotControlRow, field.arrayElementKeys[0].key)">
+          </div>
+
+          <button class="selected-choice choice-name"
+
+                  (click)="openModal(field,false)"
+                  *ngIf="getValue(selectedSlotControlRow, 'slot_type') === 'video'">+ Add Video
+          </button>
+        </div>
+        <div class="videos-container">
+          <div *ngIf="videoFormArray() && videoFormArray().controls.length>0" class="chnannel-name-container"
+         
+               cdkDropList (cdkDropListDropped)="dropVideoList($event,videoFormArray().controls)">
+
+            <span class="name" cdkDrag
+                  [ngClass]="{'selected-element': getValue1(video, 'id') === getValue1(selectedVideoControlRow, 'id')}"
+                  (click)="showVideoDetails(video,getValue1(video, 'id'))"
+                  *ngFor="let video of videoFormArray().controls; index as i"
+
+            >
+            <span class="material-icons" style="margin-right: 7px;">
+              drag_handle
+              </span>
+
+              {{getValue1(video, 'title')}}
+
+              <span class="material-icons delete-icon" (click)="deleteVideo(getValue(video, 'id'))">
+              delete
+              </span>
+
+            </span>
+
+
+          </div>
+
+          <div *ngIf="videoFormArray()" class="time-container"
+          >
+            <div *ngIf="displayVideoItems()">
+              <div class="row" *ngFor="let date of dateFormArray().controls; index as i">
+
+                <app-calendar [field]="field.arrayElementKeys[1].field"
+                              [form]="date" class="col-5"></app-calendar>
+
+                <app-calendar class="col-5" [field]="field.arrayElementKeys[2].field"
+                              [form]="date"></app-calendar>
+
+
+              </div>
+
+
+            </div>
+          </div>
+
+          <span *ngIf="displayVideoItems()" (click)="addDates()" class="material-icons add-icon">
+            add_circle
+            </span>
+        </div>
+
+        <div class="no-video-phrase" *ngIf="!videoFormArray()">
+          there is no videos
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</div>
+
+
+<ngx-smart-modal #modal
+                 (onClose)="closeModal()"
+                 (onCloseFinished)="modalKey = undefined"
+                 [dismissable]="false"
+                 identifier="conditionModal"
+                 customClass="nsm-dialog-animation-ttb nsm-centered modal-with-filter">
+  <ng-container *ngIf="openModel">
+    <h5 class="header-width">{{modalKey}}</h5>
+    <div class="hcp-table-loading loader-edit-page" *ngIf="modelFields.length <= 0">
+      <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+    </div>
+
+    <div>
+      <!-- <div *ngIf="displayFilter" class="gray-background"></div> -->
+
+      <div style="position: relative; height: 23px;">
+        <span class="filter-image" (click)="displayFilter = !displayFilter"> </span>
+      </div>
+      <app-general-filter class="general-filter-class  "
+                          *ngIf="field.filter && field.filter.fields.length > 0 && displayFilter "
+                          (onSubmit)="applyFilter($event)"
+                          [resultsNumber]="field.filter.resultsNumber"
+                          (onResetFilter)="resetFilter()"
+                          [fieldsContainers]="field.filter.fields "
+                          [resultsUnit]="field.filter.resultsUnit"
+                          [resultSumUnit]="field.filter.resultSumUnit"
+
+                          [showReset]="field.filter.showReset"
+                          [showResultSatetment]="field.filter.showResultSatetment"
+                          [showFilterIcon]="field.filter.showFilterIcon"
+
+      ></app-general-filter>
+
+
+      <app-dynamic-form *ngIf="openModel && modelFields.length > 0" (onSubmit)="addContentClass($event)"
+                        [fieldsContainers]="modelFields"
+                        [routingOnCancel]="false"
+                        (onFormStatusChange)="changeFormStatus($event)"
+                        (onCancel)="closeModal()"
+
+      ></app-dynamic-form>
+    </div>
+
+  </ng-container>
+
+
+</ngx-smart-modal>

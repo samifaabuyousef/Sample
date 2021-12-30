@@ -1,0 +1,47 @@
+<div [formGroup]="form" class="form-group"
+     [ngClass]="field.fieldContainerClass"
+     [class.center-elements]="field.controlType=='checkbox'">
+
+
+  <label [attr.for]="field.key"
+         [ngClass]="[field.required? 'required-field' : ''  ,  field.labelClass ? field.labelClass: '']">{{field.label}}</label>
+  <div [ngStyle]="{'width': field.width}"
+       [ngClass]="field.unitContainerClass"
+
+       [ngClass]="{'flag-container-class':field.flag != ''}">
+    <span class="material-icons flag-icon-class" *ngIf="field.flag != ''">
+      settings_cell
+      </span>
+    <input [formControlName]="field.key"
+           [value]="form.get(field.key).value"
+           [placeholder]="field.placeholder"
+           [ngClass]="field.insideFieldClass"
+           pattern="{{field.pattern}}"
+           [min]="field.minValue"
+           [max]="field.maxValue"
+           (change)="sliderValueChange()"
+           [id]="field.key" [type]="field.type" class="form-control">
+    <span *ngIf="field.unit" [ngClass]="field.unitClass">{{field.unit}}</span>
+    <a *ngIf="field.icon" [ngClass]="field.icon"></a>
+
+  </div>
+
+  <div [ngClass]="field.descriptionClass" *ngIf="field.description">{{getDescription()}}</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired "> {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid != undefined">
+    <span *ngIf="field.errorMessage != null">{{form.get(field.key).errors.invalid }}</span>
+    <span *ngIf="!field.errorMessage ">{{field.label}} {{form.get(field.key).errors.invalid }}</span>
+  </div>
+
+  <div class="hcp-body-text hcp-error-field"
+       *ngIf="isMaxLength && isRequired && !isValid && form.get(field.key).errors.invalid === undefined">
+    <span *ngIf="field.errorMessage != null">{{field.errorMessage}}</span>
+    <span *ngIf="!field.errorMessage">{{field.label}} is not valid</span>
+  </div>
+
+
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>

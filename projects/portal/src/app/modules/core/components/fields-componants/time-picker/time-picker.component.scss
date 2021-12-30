@@ -1,0 +1,18 @@
+.input-class{
+    border: none;
+    padding: 0;
+padding-left: 23px;
+}
+.box-class{
+    display: flex;
+border-bottom: 1px solid #A0A7B9;
+}
+.time-picker-class{
+    cursor: pointer;
+    }
+.disabled-field-class{
+    cursor: no-drop;
+    .ngx-material-timepicker-toggle{
+        cursor: no-drop !important; 
+    }
+}

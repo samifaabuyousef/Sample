@@ -1,0 +1,51 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+
+  <div>
+    <app-content-class-selector *ngIf="!loadingElement"
+      [type]="field.contentSelectorType"
+      [config]="field.config"
+      [enableFetchData]="field.enableFetchData"
+      [enableAdd]="field.enableAdd"
+      [multiple]="field.multiple"
+      (onContainRemoved)="onContentClassChanged(field.key,$event)"
+      (onAddClicked)="openModal($event, field.key,  field)"
+      (onGetData)="fetchData($event)"
+    ></app-content-class-selector>
+
+
+  </div>
+
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired">This {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="isMaxLength && isRequired && !isValid">
+    This {{field.label}} is not valid, Please choose a color from the color picker
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>
+
+
+<ngx-smart-modal #modal
+                 (onClose)="closeModal1()"
+                 (onCloseFinished)="modalKey = undefined"
+                 [dismissable]="false"
+                 identifier="conditionModal"
+                 customClass="nsm-dialog-animation-ttb nsm-centered">
+  <ng-container *ngIf="openModel">
+    <h5 class="header-width">{{modalKey}}</h5>
+
+    <div class="hcp-table-loading loader-edit-page" *ngIf="modelFields.length <= 0">
+      <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <app-dynamic-form *ngIf="openModel && modelFields.length > 0" (onSubmit)="addContentClass($event)"
+                       [fieldsContainers]="modelFields"
+                      [routingOnCancel]="false"
+                      (onFormStatusChange)="changeFormStatus($event)"
+                      (onCancel)="closeModal()"
+
+    ></app-dynamic-form>
+  </ng-container>
+
+
+</ngx-smart-modal>

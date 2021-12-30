@@ -1,0 +1,50 @@
+.flex-container {
+  display: flex;
+}
+
+.add-button {
+  position: absolute;
+  top: -54px;
+  background: #1BBD9F;
+  border-radius: 5px;
+  right: 0;
+  padding: 12px;
+  border: none;
+  color: white;
+}
+
+.action-cell {
+  padding-top: 20px;
+  display: flex;
+
+  .edit-btn {
+    margin-right: 12px;
+  }
+}
+
+.loader-edit-page {
+  top: 29% !important;
+}
+
+.position-class {
+  position: relative;
+}
+
+.header-width {
+  min-width: 691px;
+  margin-bottom: 3rem;
+}
+
+.overlay.nsm-overlay-open .nsm-content {
+  max-width: 702px !important;
+}
+
+.header-border {
+  border: 0 !important;
+}
+
+@media screen and (max-width: 1200px) and (min-width: 993px) {
+  .overlay.nsm-overlay-open .nsm-content {
+    max-width: 723px !important;
+  }
+}

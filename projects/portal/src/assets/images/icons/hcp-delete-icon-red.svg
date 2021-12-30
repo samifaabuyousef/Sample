@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <g id="hcp-delete-icon" transform="translate(-0.35)">
+    <path id="Path_2" data-name="Path 2" d="M18,0A18,18,0,1,1,0,18,18,18,0,0,1,18,0Z" transform="translate(0.35)" fill="#f64e60" opacity="0.15"/>
+    <path id="Path_1" data-name="Path 1" d="M20.35,12h3a.945.945,0,0,1,1,1v1h-13V13a1,1,0,0,1,1-1h3a2.562,2.562,0,0,1,5,0Zm-4,0h3a1.625,1.625,0,0,0-3,0Zm-4,3h11l-.9,10.1a.987.987,0,0,1-1,.9h-7.2a1.063,1.063,0,0,1-1-.9Z" fill="#f64e60"/>
+  </g>
+</svg>

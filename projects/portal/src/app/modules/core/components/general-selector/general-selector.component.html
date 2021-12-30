@@ -1,0 +1,60 @@
+<ul class="general-list list-group" *ngIf="sortable" [sortablejs]="items">
+  <ng-container *ngTemplateOutlet="itemsTmpl"></ng-container>
+</ul>
+<ul class="general-list list-group" *ngIf="!sortable">
+  <ng-container *ngTemplateOutlet="itemsTmpl"></ng-container>
+</ul>
+
+<ng-template #itemsTmpl>
+  <li class="list-group-item"
+      [ngClass]="{'sortable': sortable}"
+      *ngFor="let item of items; index as i">
+    <div class="d-flex justify-content-between align-items-center">
+        <span class="title-container">
+            <ng-container *ngIf="sortable">
+                <svg class="bi bi-justify" width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                          d="M4 14.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5zm0-3a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z"
+                          clip-rule="evenodd"></path>
+                </svg>
+            </ng-container>
+            <span class="general-title"> {{ item.title }}</span>
+        </span>
+        <span>
+              <ng-container *ngIf="sortable"><span
+                class="badge badge-info badge-pill">{{ i + 1 }}</span>&nbsp;</ng-container>
+              <span (click)="removeItem(item)" class="delete badge badge-danger badge-pill">X</span>
+        </span>
+    </div>
+  </li>
+</ng-template>
+
+<div class="list-group-item d-flex justify-content-between align-items-center mt-3 p-0 border-0"
+     [ngClass]="{'select-box-hidden': disabled}">
+  <ngx-select class="list-select"
+              [items]="config.getFiltered()"
+              [placeholder]="selectTitle"
+              optionValueField="id"
+              [disabled]="disabled"
+              optionTextField="title"
+              (selectionChanges)="itemSelected($event)"
+              [(ngModel)]="ngxValue">
+
+    <ng-template ngx-select-option ngx-select-option-selected let-option let-text="text">
+      <ng-container [ngSwitch]="option.data.id">
+        <div *ngSwitchCase="'0'">
+          <hr>
+        </div>
+        <div *ngSwitchCase="'-1'" (click)="addClicked('')">+ Add new</div>
+        <div *ngSwitchDefault>{{option.data.title}}</div>
+      </ng-container>
+    </ng-template>
+
+    <ng-template ngx-select-option-not-found let-input>
+      <div *ngIf="!enableAdd">"{{input}}" not found</div>
+      <div *ngIf="enableAdd" (click)="addClicked(input)">"{{input}}" not found, click <b>here</b> to add</div>
+    </ng-template>
+
+  </ngx-select>
+</div>

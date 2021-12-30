@@ -1,0 +1,28 @@
+<div [formGroup]="form" class="form-group" [class.center-elements]="field.controlType=='checkbox'">
+  <label [attr.for]="field.key" [ngClass]="{'required-field': field.required}">{{field.label}}</label>
+  <div [ngStyle]="{'width': field.width}">
+    <div class="color-container">
+      <input
+        [colorPicker]="form.get(field.key).value"
+        [value]="form.get(field.key).value"
+
+        (colorPickerChange)="form.get(field.key).setValue($event)"
+        pattern="{{field.pattern}}"
+        class="colorPicker"
+        [formControlName]="field.key">
+      <div class="color-circle" [style.background-color]="field.value"></div>
+      <div *ngIf=" !isRequired || isValid"
+
+           [ngStyle]="{
+        'background': form.get(field.key).value }"
+           class="color-circle"></div>
+    </div>
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="!isRequired">This {{field.label}} is required</div>
+  <div class="hcp-body-text hcp-error-field" *ngIf="isMaxLength && isRequired && !isValid">
+    This {{field.label}} is not valid, Please choose a color from the color picker
+  </div>
+  <div class="hcp-body-text hcp-error-field" *ngIf=" !isMaxLength">
+    the max title length is {{field.maxLength}} character
+  </div>
+</div>

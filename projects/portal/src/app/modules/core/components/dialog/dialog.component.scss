@@ -1,0 +1,75 @@
+.image-upload-tab-container {
+  margin-top: 2rem;
+
+  padding: 0 2rem;
+}
+
+.choose-lable {
+  padding-bottom: 0.7rem;
+}
+
+.distance-between-elements {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ok-button-class {
+  background: white;
+  margin-bottom: 0.5rem;
+  color: #39377c;
+  outline: none;
+}
+
+.disabled-button {
+  cursor: no-drop;
+}
+
+.ok-button-class:hover {
+  border: 1px solid white;
+  background: #39377c;
+  color: white;
+  font-weight: bold;
+}
+
+.cancel-button {
+  border: 1px solid white;
+  background: #39377c;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  outline: none;
+  margin-right: 0.5rem;
+}
+
+.image-container {
+  margin: 1rem;
+
+  img {
+    width: 200px;
+
+    height: 200px;
+  }
+}
+
+.selected-image-class {
+  padding: 1rem 0.5rem;
+  background: #8080806b;
+}
+
+
+.mat-tab-group {
+  height: 500px;
+}
+
+.mat-dialog-actions {
+  box-shadow: inset 0 0 5px 0 #cccccc;
+  background-color: #f5f5fa;
+  justify-content: flex-end;
+}
+
+.images-container {
+  display: flex;
+
+  flex-wrap: wrap;
+}

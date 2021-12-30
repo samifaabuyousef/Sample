@@ -1,0 +1,30 @@
+<div class="row m-0 justify-center">
+  <!-- <div class="col p-0">
+    <div class="login-splash"></div>
+  </div> -->
+  <div class="col-lg-6 col-md-8 col-sm-12 p-0">
+    <form class="login-form" [formGroup]="form">
+      <img src="assets/images/logo.png" alt="logo">
+      <span class="hcp-total-numbers">Log in to Nabed</span>
+      <mat-form-field>
+        <!-- <input matInput placeholder="Email" formControlName="username"
+         pattern="([A-Za-z0-9][._]?)+[A-Za-z0-9]@[A-Za-z0-9]+(\.?[A-Za-z0-9]){2}\.(com?|net|org)+(\.[A-Za-z0-9]{2,4})?">
+       -->
+
+       <input matInput placeholder="Username/Email" formControlName="username"
+         >
+      
+        
+        
+        
+        <mat-error *ngIf="username.touched && username.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="username.touched && !username.errors?.valid && !username.errors?.required">This field is invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password">
+        <mat-error *ngIf="password.touched && password.errors?.required">This field is required</mat-error>
+      </mat-form-field>
+      <button [disabled]="form.invalid || isSubmitting" class="login-btn" (click)="login()">Login</button>
+    </form>
+  </div>
+</div>

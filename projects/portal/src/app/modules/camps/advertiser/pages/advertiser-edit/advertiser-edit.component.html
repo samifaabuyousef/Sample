@@ -1,0 +1,206 @@
+<!-- Add new speciality -->
+<div class="hcp-table-loading loader-edit-page" *ngIf="loading">
+  <mat-progress-spinner
+    [diameter]="40"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+</div>
+
+<app-form-container
+  *ngIf="!loading"
+  [cancelRouteLink]="'/camps/advertisers'"
+  [disableSaveText]="form.invalid || isSubmitting"
+  [isDirty]="form.dirty"
+  (onSubmit)="submit()"
+>
+  <h2 class="hcp-title-h2">{{ pageTitle }}</h2>
+  <div [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-card top-details">
+          <h5>Details</h5>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="title" class="required-field">English Name</label>
+                <input
+                  formControlName="generic_name"
+                  type="text"
+                  class="form-control"
+                  id="title"
+                />
+                <span
+                  *ngIf="
+                    form.controls['generic_name'].touched &&
+                    form.controls['generic_name'].errors?.required
+                  "
+                  class="hcp-body-text hcp-error-field"
+                  >This field is required</span
+                >
+                <span
+                  *ngIf="
+                    form.controls['generic_name'].touched &&
+                    form.controls['generic_name'].errors?.maxlength
+                  "
+                  class="hcp-body-text hcp-error-field"
+                  >the max title length is
+                  {{
+                    form.controls["generic_name"].errors?.maxlength
+                      .requiredLength
+                  }}
+                  character
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="title" class="required-field">Arabic Name</label>
+                <input
+                  formControlName="name"
+                  type="text"
+                  class="form-control"
+                  id="arabic_name"
+                />
+                <span
+                  *ngIf="
+                    form.controls['name'].touched &&
+                    form.controls['name'].errors?.required
+                  "
+                  class="hcp-body-text hcp-error-field"
+                  >This field is required</span
+                >
+                <span
+                  *ngIf="
+                    form.controls['name'].touched &&
+                    form.controls['name'].errors?.maxlength
+                  "
+                  class="hcp-body-text hcp-error-field"
+                  >the max title length is
+                  {{ form.controls["name"].errors?.maxlength.requiredLength }}
+                  character
+                </span>
+              </div>
+            </div>
+
+            <div class="col-sm-12 mt-0">
+              <div class="form-group">
+                <label>Image</label>
+                <nbd-upload
+                  [imageTextTitle]="
+                    !this.isAdd && isImageExist
+                      ? 'Replace Image'
+                      : 'Upload Image'
+                  "
+                  (onChange)="imageChanged($event)"
+                >
+                </nbd-upload>
+                <div class="img-container" *ngIf="imagePreview">
+                  <span
+                    class="material-icons close-image-icon"
+                    (click)="removeImage()"
+                  >
+                    highlight_off
+                  </span>
+                  <img class="img-upload logo" [src]="imagePreview" />
+                </div>
+                <p *ngIf="currentImageName !== null">
+                  {{ currentImageName }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-card">
+          <h5>Contact Information</h5>
+          <div>
+            <div
+              [ngClass]="['key-contact']"
+              *ngFor="let addressGroup of keyContact; let i = index"
+              [formGroup]="addressGroup"
+            >
+              <div class="card-wrap">
+                <div>
+                  <label>Name</label>
+                  <input formControlName="key_contact_name" />
+                </div>
+
+                <div>
+                  <label>Mobile</label>
+
+                  <input
+                    type="text"
+                    class="mobile-field-border"
+                    formControlName="key_contact_mobile"
+                    (change)="changeNumber($event)"
+                    [ng2TelInputOptions]="{
+                      preferredCountries: ['lb', 'sa', 'ae', 'jo']
+                    }"
+                    ng2TelInput
+                    (hasError)="hasError($event)"
+                    (ng2TelOutput)="getNumber($event)"
+                    (intlTelInputObject)="telInputObject($event, addressGroup)"
+                    (countryChange)="onCountryChange($event)"
+                  />
+                </div>
+
+                <div>
+                  <label>Country/Region</label>
+                  <ngx-select
+                    formControlName="key_contact_country"
+                    [allowClear]="true"
+                    [items]="countryArray"
+                    optionValueField="optionId"
+                    optionTextField="optionTitle"
+                    placeholder="Select..."
+                  >
+                  </ngx-select>
+                </div>
+
+                <div>
+                  <label>Address</label>
+                  <input formControlName="key_contact_address" />
+                </div>
+
+                <div>
+                  <label class="required-field">Username</label>
+                  <input formControlName="key_username" />
+                  <span
+                    *ngIf="
+                      keyContact[i].get('key_username').touched &&
+                      keyContact[i].get('key_username').errors?.required
+                    "
+                    class="hcp-body-text hcp-error-field"
+                    >This field is required</span
+                  >
+                </div>
+
+                <div *ngIf="isAdd">
+                  <label class="required-field">Password</label>
+                  <input type="password" formControlName="key_password" />
+                  <span
+                    *ngIf="
+                      keyContact[i].get('key_password').touched &&
+                      keyContact[i].get('key_password').errors?.required
+                    "
+                    class="hcp-body-text hcp-error-field"
+                    >This field is required</span
+                  >
+                </div>
+
+                <button *ngIf="false" (click)="deleteAddressGroup(i)">
+                  Delete
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <button *ngIf="false" (click)="addNewAddressGroup()">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-form-container>

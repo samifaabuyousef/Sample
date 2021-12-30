@@ -1,0 +1,22 @@
+<ngx-extended-pdf-viewer
+  [src]="pdfLink"
+  useBrowserLocale="true"
+  [showSidebarButton]=false
+  [showSidebarOnLoad]=false
+  [showBookmarkButton]=false
+  [showDownloadButton]=false
+  [showFindButton]=false
+  [showOpenFileButton]=false
+  [showPresentationModeButton]=false
+  [showPrintButton]=false
+  [showPropertiesButton]=false
+  [showRotateButton]=false
+  [showScrollingButton]=false
+  [showSecondaryToolbarButton]=false
+  [showSpreadButton]=false
+  [(page)]=currentPage
+  (pdfLoaded)=onLoadPdf($event)
+  (pageRendered)=onPagesLoaded($event)
+  (pageChange)=onPageChange($event)
+  height="80vh"
+></ngx-extended-pdf-viewer>

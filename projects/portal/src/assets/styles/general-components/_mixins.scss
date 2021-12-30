@@ -1,0 +1,47 @@
+@mixin respond($breakpoint) {
+    @media (min-width: $breakpoint + px) {
+        @content;
+    }
+}
+
+@mixin respond-points($min, $max) {
+    @media (min-width: $min + px) and (max-width: $max + px) {
+        @content;
+    }
+}
+
+@mixin rtl($property, $ltr-value, $rtl-value) {
+    #{$property}: $ltr-value;
+     :host-context([dir=rtl]) & {
+        #{$property}: $rtl-value;
+    }
+}
+
+@function rem($size) {
+    $remSize: $size / 16px;
+    @return #{$remSize}rem;
+}
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin respond($breakpoint) {
+    @media (max-width: $breakpoint + px) {
+      @content;
+    }
+}
+@mixin respond-points($min, $max) {
+    @media (min-width: $min + px) and (max-width: $max + px) {
+      @content;
+    }
+}
+
+@mixin card {
+    background: #FFFFFF;
+    box-shadow: 0px rem(2px) rem(8px) rgba(152, 142, 222, 0.08);
+    border-radius: rem(8px);
+    padding: rem(24px);
+}

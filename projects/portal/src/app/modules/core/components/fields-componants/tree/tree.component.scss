@@ -1,0 +1,40 @@
+.add-button {
+  position: absolute;
+  top: -54px;
+  margin-left: 4px;
+  margin-bottom: 1rem;
+  background: #1BBD9F;
+  border-radius: 5px;
+  right: 0;
+  padding: 12px;
+  border: none;
+  color: white;
+}
+
+.tree-block {
+  overflow-y: auto;
+  max-height: 410px;
+  display: block;
+  margin-top: 2rem;
+}
+
+.position-class {
+  position: relative;
+}
+
+.no-margin
+.padding-element {
+  padding: 8px;
+}
+
+.export-loader-btn {
+  position: absolute;
+  top: 46%;
+  left: 46%;
+}
+
+.disabled-button {
+  background: #049A7F66;
+  border: 2px solid #049A7F66;
+  cursor: no-drop;
+}

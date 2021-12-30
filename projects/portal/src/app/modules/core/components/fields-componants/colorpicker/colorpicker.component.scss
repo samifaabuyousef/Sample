@@ -1,0 +1,13 @@
+.color-circle {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translatey(-50%);
+  right: 10px;
+}
+
+.color-container {
+  position: relative;
+}

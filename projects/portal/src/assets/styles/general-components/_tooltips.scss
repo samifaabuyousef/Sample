@@ -1,0 +1,48 @@
+.hcp-tooltip {
+    &:hover{
+      cursor: pointer;
+    }
+    &:hover .hcp-tooltip__top {
+        display: inline-block;
+        cursor: pointer;
+    }
+    & .hcp-tooltip__top {
+      min-width: rem(95px);
+      top: -30px;
+    }
+    position: relative;
+    display: flex;
+    &__top {
+        padding: rem(10px);
+        text-align: center;
+        padding: rem(5px) rem(10px) rem(10px) rem(10px);
+        color: $hcp-title-color;
+        font-weight: 400;
+        background: $hcp-focus-border-color;
+        box-shadow: 0px rem(2px) rem(8px) rgba(152, 142, 222, 0.08);
+        border-radius: rem(5px);
+        position: absolute;
+        z-index: 2;
+        display: none;
+        i {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: rem(12px);
+            height: rem(6px);
+            border-radius: 20%;
+            overflow: hidden;
+            &:after {
+                content: '';
+                position: absolute;
+                width: rem(6px);
+                height: rem(6px);
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(45deg);
+                background-color: $hcp-focus-border-color;
+                box-shadow: 0 rem(1px) rem(8px) 0px rem(2px) rem(8px) rgba(152, 142, 222, 0.08);
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.seleted-filter {
+  background: #39377c !important;
+  color: #e9e2f0 !important;
+}
+
+.option-container {
+  display: flex;
+  position: absolute;
+  top: 17px;
+  right: 6px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.element-option {
+  padding: 13px 1rem;
+  background: #e9e2f0;
+  color: #39377c;
+  cursor: pointer;
+}
