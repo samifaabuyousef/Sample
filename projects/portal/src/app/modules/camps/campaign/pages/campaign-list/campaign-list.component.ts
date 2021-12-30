@@ -4,7 +4,7 @@ import {MatPaginator, Sort} from '@angular/material';
 import {AdvertiserModal} from '../../../advertiser/modals/advertiser-modal';
 import {CampaignService} from '../../campaign.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {PopupComponent} from 'nabed-components';
+import {PopupComponent} from 'components';
 import * as objectPath from 'object-path';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
@@ -22,9 +22,9 @@ export class CampaignListComponent implements OnInit , AfterViewInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild('searchInput', {static: true}) searchInput: ElementRef;
   searchForm: FormGroup;
-   sortingFilter: {};
-   sortArray: any[];
-   dataSourceData: any;
+  sortingFilter: {};
+  sortArray: any[];
+  dataSourceData: any;
   filterObjecyValue: any;
   displayedColumns: any = ['id', 'name', 'arabicName', 'advertiser', 'brand', 'country', 'actions'];
 
@@ -56,6 +56,8 @@ export class CampaignListComponent implements OnInit , AfterViewInit {
   }
 
   ngAfterViewInit() {
+    // -- @sami ---------------------------------------------
+    // -- debouncing function for the search input ----------
     fromEvent(this.searchInput.nativeElement, 'keyup')
       .pipe(
         debounceTime(500),
@@ -68,6 +70,12 @@ export class CampaignListComponent implements OnInit , AfterViewInit {
       .subscribe();
   }
 
+
+  // -- @sami ---------------------------------------------
+  // -- loading the data for the table --------------------
+  // -- creating new object have the sort and filter values
+  // -- loading the data source function is taking the object to the customized base-data-source and call the api
+  // -- for pagination and filtering
   load() {
     const newObj = {
       ...this.sortingFilter,
@@ -82,13 +90,16 @@ export class CampaignListComponent implements OnInit , AfterViewInit {
 
   private search() {
     const search = this.searchInput.nativeElement.value.trim();
-
     this.filterObjecyValue = {
       'q': search
     };
     this.load();
   }
 
+  // -- deleting function is opening general delete confirmation component with dynamic data inside
+  // -- objectPath is a library for going deep inside object and coalesce is to find the first undefined value to populate to the form
+  // -- after close subscribtion updating the table data source
+  // -- setLoadingSubject is for stoping the loader
   public openDeleteDialog(campaign) {
     const name = objectPath.coalesce(campaign, [ 'name', 'generic_name'], '');
     const dialogRef = this.dialog.open(PopupComponent, {
@@ -117,12 +128,10 @@ export class CampaignListComponent implements OnInit , AfterViewInit {
   }
 
   sortData(sort: Sort) {
-
     if (!sort.active || sort.direction === '' || !this.dataSourceData) {
       return;
     }
     this.dataSourceData.data = this.dataSourceData.data.sort((a, b) => {
-
       this.sortArray = [];
       switch (sort.active) {
         case 'id':
@@ -144,18 +153,13 @@ export class CampaignListComponent implements OnInit , AfterViewInit {
     const obj: any = {};
     this.sortingFilter = {};
     if (this.sortArray.length > 0) {
-
-
       for (let index = 0; index < this.sortArray.length; index++) {
         const element = this.sortArray[index];
         obj['sort[' + index.toString() + '][key]'] = element.key;
         obj['sort[' + index.toString() + '][direction]'] = element.direction;
-
       }
-
       this.sortingFilter = obj;
     }
-
     this.load();
   }
 }

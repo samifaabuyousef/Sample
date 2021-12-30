@@ -26,6 +26,5 @@ export class StatisticCardConfig {
     this.totalNumber = options.totalNumber || 0;
     this.totalNumberTitle = options.totalNumberTitle || '';
     this.portions = options.portions || [];
-    
   }
 }

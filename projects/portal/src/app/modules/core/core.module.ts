@@ -67,10 +67,6 @@ import { VideoListComponent } from "./components/video-list/video-list.component
 import { DocumentViewerComponent } from "./components/document-viewer/document-viewer.component";
 import { VideoComponentComponent } from "./components/video-component/video-component.component";
 import { NgxExtendedPdfViewerModule } from "ngx-extended-pdf-viewer";
-import {
-  ViewCanDeactivateGuard,
-  ViewComponentCanDeactivate,
-} from "./guards/view-can-deactivate";
 import { SearchComponent } from "./components/fields-componants/search/search.component";
 import { PieChartComponent } from "./components/pie-chart/pie-chart.component";
 import { NgxEchartsModule } from "ngx-echarts";
@@ -85,14 +81,9 @@ import { RadioGroupComponent } from "./components/fields-componants/radio-group/
 import { SafePipe } from "./pipelines/safe";
 import { ComposeComponent } from "./components/fields-componants/compose/compose.component";
 import { TreeComponent } from "./components/fields-componants/tree/tree.component";
-import { GeneralTreeComponent } from "./components/general-tree/general-tree.component";
 import { MatTreeModule } from "@angular/material/tree";
-import { GeneralTreeService } from "./services/general-tree.service";
-import { PageDeactivateGuard } from "./guards/page-can-deactivate.guard";
 import { SessionInterceptor } from "./interceptors/session.interceptor";
-import { ChannelsDropdownComponent } from "./components/channels-dropdown/channels-dropdown.component";
 import { ArrayDropdownComponent } from "./components/fields-componants/array-dropdown/array-dropdown.component";
-
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { OffsetTopDirective } from "./directives/offset-top.directive";
 import { ScrollableDirective } from "./directives/scrollable.directive";
@@ -138,54 +129,26 @@ export const MY_FORMATS = {
     CustomSelectorComponent,
     CheckboxComponent,
     GeneralSelectorComponent,
-
     AccordionComponent,
-
     SliderComponent,
-
     AppTopicContentClassComponent,
     OrgchartTreeComponent,
-
     GeneralAppSelectorComponent,
-
     MobileNumberComponent,
-
     TopElementsTableComponent,
-
     StatisticCardComponent,
-
     GeneralFilterComponent,
-
     VideoComponentComponent,
-
     VideoListComponent,
-
     DocumentViewerComponent,
-
     SearchComponent,
-
     PieChartComponent,
-
-    CalendarComponent,
-
     TimePickerComponent,
-
     DateCheckBoxComponent,
-
     ButtonComponent,
-
     ArrayContainerComponent,
-
     RadioGroupComponent,
-
     ComposeComponent,
-
-    TreeComponent,
-
-    GeneralTreeComponent,
-
-    ChannelsDropdownComponent,
-
     ArrayDropdownComponent,
   ],
   imports: [
@@ -222,7 +185,6 @@ export const MY_FORMATS = {
   providers: [
     ArrayOperationService,
     ExcelService,
-    GeneralTreeService,
     TokenStorage,
     AuthenticationService,
     OrgChartService,
@@ -253,8 +215,6 @@ export const MY_FORMATS = {
     },
     DirtyCheckGuard,
     CanDeactivateGuard,
-    PageDeactivateGuard,
-    ViewCanDeactivateGuard,
   ],
   exports: [
     ContentClassSelectorComponent,

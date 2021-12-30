@@ -2,10 +2,7 @@
 <div class="hcp-table-loading loader-edit-page" *ngIf="loading">
   <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
 </div>
-<app-campaign-filter [filterOptions]="typeArray" [selectedFilter]="filterValue ? filterValue : 'Details'"
-                     (filterselectedOptionion)="changeFilter($event)"
-                     *ngIf="campaignId != null"
-></app-campaign-filter>
+
 
 <app-form-container *ngIf=" ! loading"
                     [cancelRouteLink]="'/camps/campaigns'"

@@ -9,6 +9,10 @@ import {BrandResolver} from '../brand/brand.resolver';
 import {CampaignResolver} from './campaign.resolver';
 
 
+// -- @sami -------------------------
+// -- routes array for the module ---
+// -- add and edit routes activated the candeactivate guard for the form
+// -- the edit route resolve the campaign data using the resolver
 const routes: Routes = [
   {path: '',
     children: [
@@ -19,9 +23,7 @@ const routes: Routes = [
         component: CampaignEditComponent,
         canDeactivate: [DirtyCheckGuard],
         resolve: {campaign: CampaignResolver},
-
       }
-
     ],
   }
 ];

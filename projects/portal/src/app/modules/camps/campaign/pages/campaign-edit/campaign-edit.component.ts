@@ -22,6 +22,7 @@ import {
 
 const moment = moment_;
 
+// -- @sami Defining the date format
 export const Date_Format = {
   parse: {
     dateInput: "LL",
@@ -81,11 +82,13 @@ export class CampaignEditComponent implements OnInit {
   }
 
   ngOnInit() {
+    // -- calling the lookup function to fill the lists with the needed data
     this.initLookup();
+    // -- @ sami ---------------------------------------------------------
+    // -- checking the router state if the page is going to be add or edit
     this.campaignId = this.route.snapshot.paramMap.get("id");
     if (this.route.snapshot.paramMap.get("id") != null) {
       this.loading = true;
-
       this.route.data.subscribe((data) => {
         this.isAdd = false;
         this.loading = false;
@@ -103,9 +106,13 @@ export class CampaignEditComponent implements OnInit {
         }
       });
     }
+    // initializing the page messages
     this.initMessages();
   }
 
+
+  // -- @sami ---------------------------------
+  // -- initializing the reactive form function
   private initForm() {
     const fb = this.fb;
     this.form = fb.group({
@@ -124,6 +131,9 @@ export class CampaignEditComponent implements OnInit {
     });
   }
 
+
+  // -- @sami --------------------------------
+  // -- submiting the form Values function ---
   submit() {
     if (this.form.get("start_date").value) {
       this.form.value.start_date = moment(
@@ -140,7 +150,6 @@ export class CampaignEditComponent implements OnInit {
     const subscription = this.isAdd
       ? this.campaignService.add(data)
       : this.campaignService.edit(this.route.snapshot.paramMap.get("id"), data);
-
     this.isSubmitting = true;
 
     subscription.pipe(finalize(() => (this.isSubmitting = false))).subscribe(
@@ -171,6 +180,8 @@ export class CampaignEditComponent implements OnInit {
     this.isImageExist = false;
   }
 
+  // -- @sami -------------------------------------
+  // -- form array for building the address group--
   addNewAddressGroup() {
     const add = this.form.get("key_contact") as FormArray;
     add.push(
@@ -186,6 +197,8 @@ export class CampaignEditComponent implements OnInit {
     );
   }
 
+  // -- @sami -------------------------------------
+  // -- deleting from the form array
   deleteAddressGroup(index: number) {
     const add = this.form.get("key_contact") as FormArray;
     add.removeAt(index);
@@ -199,6 +212,7 @@ export class CampaignEditComponent implements OnInit {
 
   onBlur($event: FocusEvent) {}
 
+  // initializing messages function
   private initMessages() {
     this.pageTitle = this.isAdd ? "Add Campaign" : "Edit Campaign";
     this.successMessage = this.isAdd
@@ -229,12 +243,5 @@ export class CampaignEditComponent implements OnInit {
     });
   }
 
-  changeFilter(option: string) {
-    const myurl =
-      option === "Details"
-        ? `camps/campaigns/edit/${this.campaignId}`
-        : `camps/campaigns/edit/${this.campaignId}/${option}`;
-    this.router.navigateByUrl(myurl);
-    console.log(myurl);
-  }
+
 }
